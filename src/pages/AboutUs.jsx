@@ -25,8 +25,8 @@ export default function AboutUs() {
             <div className="flex flex-wrap items-center gap-4 mb-10">
                <span className="px-6 py-2 bg-[#A0813D] text-[10px] font-black uppercase tracking-[0.4em] rounded-full">ESTABLISHED 1974</span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter uppercase">Legacy <br /> <span className="text-[#A0813D]">Madurai Central</span></h1>
-            <p className="text-xl text-slate-300 max-w-2xl leading-relaxed font-medium border-l-4 border-[#A0813D] pl-8">The premier local organization in the temple city, committed to developing leadership and professional excellence.</p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-8 tracking-tighter uppercase">Legacy of<br /> <span className="text-[#A0813D]">Madurai Central</span></h1>
+            <p className="text-xl text-slate-300 max-w-2xl leading-relaxed font-medium border-l-4 border-[#A0813D] pl-8">The premier local organization in the temple City @ Atens of the east, committed to developing leadership and professional excellence.</p>
           </div>
         </div>
       </section>

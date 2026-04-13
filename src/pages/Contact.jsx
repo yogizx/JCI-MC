@@ -3,7 +3,7 @@ import { MapPin, Mail, Phone, Globe, Users, Camera, ArrowRight, CheckCircle2, Al
 import homeHero from '../assets/home_hero.png'
 
 const MADURAI_MAP_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.6220397700764!2d78.11916997495!3d9.919395589948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b1189633%3A0x7c98bc4efba8519d!2sMadurai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin'
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245.64574452645417!2d78.11762394858893!3d9.906289562766407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c5d5f7f96449%3A0x61c62719909f77ad!2sGokulnath%20R!5e0!3m2!1sen!2sin!4v1776107960972!5m2!1sen!2sin'
 
 function validate(form) {
   const errors = {}
@@ -151,18 +151,20 @@ export default function Contact() {
                   {[
                     {
                       icon: <MapPin size={16} className="text-[#8B7355]" />,
-                      title: 'Headquarters',
-                      lines: ['12/4, Heritage Avenue, Bypass Road,', 'Madurai, Tamil Nadu 625016, India'],
+                      // title: 'Headquarters',
+                      title: 'Address',
+                      lines: ['4691, Villapuram Housing Board,', 'Jaihindpuram Main Road, Madurai 625011'],
                     },
                     {
                       icon: <Phone size={16} className="text-[#8B7355]" />,
                       title: 'Phone & Mobile',
-                      lines: ['+91 452 234 5678', '+91 98765 43210'],
+                      lines: ['+91 99433 64066'],
+                      // lines: ['+91 99433 64066', '+91 99433 64066'],
                     },
                     {
                       icon: <Mail size={16} className="text-[#8B7355]" />,
                       title: 'Email Inquiries',
-                      lines: ['info@jcimaduraicentral.org', 'president@jcimaduraicentral.org'],
+                      lines: ['maduraicentraljci@gmail.com'],
                     },
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4">
@@ -192,22 +194,28 @@ export default function Contact() {
                   <div>
                     <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Follow Us</h4>
                     <div className="flex gap-3">
+                      <a href="https://www.facebook.com/JCIMaduraiCentral23" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-[#1877F2] transition-colors">
+                        {/* Facebook SVG */}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M22 12a10 10 0 1 0-11.563 9.878v-6.988H7.9V12h2.537V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988A10.003 10.003 0 0 0 22 12z"/>
+                        </svg>
+                      </a>
+                      <a href="https://www.instagram.com/jcimaduraicentral" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-gradient-to-tr hover:from-[#f09433] hover:to-[#bc1888] transition-colors">
+                        {/* Instagram SVG */}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.265.07 1.645.07 4.851s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.265.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.265-.058 1.645-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-1.609.074-3.057.436-4.199 1.578C1.712 2.792 1.35 4.24 1.276 5.849 1.218 7.13 1.204 7.538 1.204 12s.014 4.87.072 6.151c.074 1.609.436 3.057 1.578 4.199 1.142 1.142 2.59 1.504 4.199 1.578C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.609-.074 3.057-.436 4.199-1.578 1.142-1.142 1.504-2.59 1.578-4.199.058-1.281.072-1.689.072-6.151s-.014-4.87-.072-6.151c-.074-1.609-.436-3.057-1.578-4.199-1.142-1.142-2.59-1.504-4.199-1.578C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                        </svg>
+                      </a>
                       <a href="#" className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-[#A0813D] transition-colors">
                         <Globe size={16} />
-                      </a>
-                      <a href="#" className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
-                        <Users size={16} />
-                      </a>
-                      <a href="#" className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-pink-600 transition-colors">
-                        <Camera size={16} />
                       </a>
                     </div>
                   </div>
                 </div>
                 <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                  <p className="text-[12px] text-slate-400 font-medium leading-relaxed">
-                    For urgent matters, WhatsApp us at <span className="text-[#FBC764] font-bold">+91 98765 43210</span> — we respond within 2 hours.
-                  </p>
+                    <p className="text-[12px] text-slate-400 font-medium leading-relaxed">
+                      For urgent matters, WhatsApp us at <span className="text-[#FBC764] font-bold">+91 99433 64066</span> — we respond within 2 hours.
+                    </p>
                 </div>
               </div>
             </div>
@@ -318,8 +326,8 @@ export default function Contact() {
                 <MapPin size={18} className="text-[#A0813D]" />
               </div>
               <div>
-                <p className="font-bold text-[#00153D] text-sm">12/4, Heritage Avenue, Bypass Road</p>
-                <p className="text-slate-500 text-xs">Madurai, Tamil Nadu 625016, India</p>
+                <p className="font-bold text-[#00153D] text-sm">4691, Villapuram Housing Board</p>
+                <p className="text-slate-500 text-xs">Jaihindpuram Main Road, Madurai 625011</p>
               </div>
             </div>
             <a

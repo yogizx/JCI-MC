@@ -38,6 +38,12 @@ const verticalCards = [
     title: 'Internationalism',
     desc: 'Leveraging JCI\'s global network to foster international cooperation, cultural exchange, and global leadership opportunities.',
     img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop'
+  },
+  {
+    icon: <Users className="w-5 h-5" />,
+    title: 'Junior Jaycee',
+    desc: 'Nurturing the next generation of leaders by engaging young individuals with mentorship, life skills, and civic responsibility programs.',
+    img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=2022&auto=format&fit=crop'
   }
 ]
 

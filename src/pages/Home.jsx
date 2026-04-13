@@ -49,11 +49,14 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 bg-[#A0813D] text-[10px] font-black uppercase tracking-[0.3em] rounded-full mb-8 shadow-lg">
               JCI Madurai Central
             </span>
-            <h1 className="text-5xl lg:text-8xl font-black leading-[1.1] mb-8 tracking-tight">
-              Transforming <br /> Passion into <span className="text-[#A0813D]">Action</span>
+            <h1 className="text-5xl lg:text-8xl font-black leading-tight mb-10 tracking-tight flex flex-col gap-4">
+              <span>Transforming</span>
+              <span>Passion into <span className="text-[#A0813D]">Action</span></span>
             </h1>
-            <p className="text-xl lg:text-2xl text-slate-300 mb-12 max-w-2xl leading-relaxed font-medium">
-              Empower yourself. Impact your community. Shape the future.
+            <p className="text-xl lg:text-2xl text-slate-300 mb-12 max-w-2xl leading-relaxed font-medium flex flex-col gap-2">
+              <span>Empower yourself.</span>
+              <span>Impact your community.</span>
+              <span>Shape the future.</span>
             </p>
             <div className="flex flex-wrap gap-6">
               <Link 
@@ -88,7 +91,7 @@ export default function Home() {
             </div>
             
             <div>
-              <span className="text-[#A0813D] font-black text-[11px] uppercase tracking-[0.4em] mb-6 inline-block">Introduction</span>
+              <span className="text-[#A0813D] font-black text-[16px] uppercase tracking-[0.4em] mb-6 inline-block">Introduction</span>
               <h2 className="text-4xl lg:text-6xl font-black text-[#00153D] leading-[1.1] mb-8 tracking-tight">Welcome to <br />JCI India</h2>
               <p className="text-slate-600 text-lg leading-relaxed mb-10 font-medium">
                 We are a vibrant community of young leaders aged 18-40, active across 28 zones and 28 states in India. As part of a global network spanning 115 countries, JCI India empowers passionate individuals to become capable leaders in government, business, and civil society. 
@@ -132,22 +135,22 @@ export default function Home() {
                <div className="absolute top-10 -left-10 w-full h-full border-2 border-[#A0813D]/40 rounded-[3rem] hidden lg:block"></div>
                <img src={leaderPortrait} alt="National President" className="rounded-[3rem] w-full h-[600px] object-cover shadow-2xl relative z-10" />
                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-10 lg:translate-x-0 bg-[#A0813D] px-8 py-4 rounded-2xl shadow-xl z-20">
-                  <p className="font-black text-sm uppercase tracking-[0.2em] text-white">National President</p>
+                  <p className="font-black text-sm uppercase tracking-[0.2em] text-white">Local Organization President</p>
                </div>
             </div>
             
             <div className="lg:col-span-7">
               <Quote className="text-[#A0813D] w-16 h-16 mb-8 mx-auto lg:mx-0 opacity-40 shrink-0" />
-              <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-[#A0813D] mb-6 group">Our National President</h2>
+              <h2 className="text-[11px] font-black uppercase tracking-[0.5em] text-[#A0813D] mb-6 group">Our Local Organization President</h2>
               <h3 className="text-3xl lg:text-5xl font-black mb-8 leading-tight">JFG Bharath N Acharya</h3>
               <div className="space-y-6 text-slate-300 text-lg leading-relaxed font-medium mb-10 italic border-l-4 border-[#A0813D] pl-8">
                 <p>"My Dear Brothers and Sisters of JCI India,"</p>
                 <p>"It is a great pleasure to share my thoughts with all of you as we begin this new journey together. The year 2026 is going to be an incredible time for our organization."</p>
                 <p>"As your National President, I want us to focus on making this 'The Year of Legacy Reimagined.' This is our time to upgrade our standards, change how we lead, and show the world the true power of JCI India."</p>
               </div>
-              <button className="text-[#A0813D] font-black text-sm uppercase tracking-widest flex items-center gap-3 hover:gap-5 transition-all mx-auto lg:mx-0">
+              {/* <button className="text-[#A0813D] font-black text-sm uppercase tracking-widest flex items-center gap-3 hover:gap-5 transition-all mx-auto lg:mx-0">
                 Read Full Message <ArrowRight size={18} />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -157,9 +160,9 @@ export default function Home() {
       <section className="py-32 bg-slate-50">
         <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-24">
-            <h2 className="text-[11px] font-black text-[#A0813D] uppercase tracking-[0.4em] mb-6">Connect & Grow</h2>
+            <h2 className="text-[16px] font-black text-[#A0813D] uppercase tracking-[0.4em] mb-6">Connect & Grow</h2>
             <h3 className="text-4xl lg:text-6xl font-black text-[#00153D] tracking-tight mb-8 leading-tight">Why Join us?</h3>
-            <p className="text-slate-500 text-xl font-medium leading-relaxed">Unlock your potential and make a difference. JCI India offers a multitude of benefits shared across our global network.</p>
+            <p className="text-slate-500 text-xl font-medium leading-relaxed">Unlock your potential and make a difference. JCI Madurai Central offers a multitude of benefits shared across our global network.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

@@ -1,7 +1,24 @@
-import { Calendar, GraduationCap, Rocket, ShieldCheck, ChevronRight, Activity, ArrowUpRight, Megaphone, MapPin, Headset } from 'lucide-react'
+import { useState } from 'react'
+import { Calendar, Rocket, ShieldCheck, ChevronRight, Activity, ArrowUpRight, Megaphone, MapPin, Headset } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+const monthValues = [40, 55, 70, 85, 60, 75, 50, 90, 65, 80, 45, 70]
+const AUG_INDEX = 7 // August is index 7 (0-based)
+
+const verticalBreakdown = {
+  Management: 1,
+  Training: 1,
+  Business: 1,
+  'Community Development': 0,
+  'Growth & Development': 2,
+  Internationalism: 0,
+  'Junior Jaycee': 1,
+}
+
 export default function Dashboard() {
+  const [hoveredMonth, setHoveredMonth] = useState(null)
+
   return (
     <div className="max-w-[1200px] mx-auto pb-12">
       <div className="bg-[#00153D] rounded-[2.5rem] p-10 mb-10 relative overflow-hidden group shadow-2xl">
@@ -15,12 +32,11 @@ export default function Dashboard() {
              You have 2 flagship events and 1 community project scheduled for this week. Your current participation score is in the top 5 percentile.
            </p>
            <div className="flex gap-4">
-              <button className="bg-[#A0813D] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#8B6D31] transition-all shadow-lg hover:-translate-y-0.5">Explore Events</button>
+              <button className="bg-[#A0813D] text-white px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#8B6D31] transition-all shadow-lg hover:-translate-y-0.5"
+             onClick={() => window.location.href = '/portal/events'}
+           >Explore Events</button>
               <button className="bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/20 transition-all backdrop-blur-md">View Analytics</button>
            </div>
-        </div>
-        <div className="absolute right-12 bottom-0 h-4/5 hidden xl:block z-20">
-           {/* Decorative elements or summary cards can go here */}
         </div>
       </div>
 
@@ -40,27 +56,18 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-8">
         <div className="space-y-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {/* Overview Cards */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {/* Events — shows total count */}
             <div className="bg-white rounded-[2rem] p-7 shadow-sm border border-slate-100 flex flex-col min-h-[220px] group hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)] hover:border-[#A0813D]/20 transition-all duration-300 cursor-default overflow-hidden relative">
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-[#A0813D]/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
               <Calendar strokeWidth={2.5} size={20} className="text-[#8B7355] mb-5 group-hover:scale-110 transition-transform duration-300" />
               <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 group-hover:text-[#00153D] transition-colors">Events</p>
-              <div className="text-[34px] font-black text-[#00153D] mb-auto tracking-tight relative z-10">85%</div>
-              <div className="w-full bg-slate-100 rounded-full h-[6px] mt-6 overflow-hidden relative z-10">
-                 <div className="bg-gradient-to-r from-[#A0813D] to-[#8B7355] h-[6px] rounded-full w-[85%] relative shadow-[0_0_10px_rgba(160,129,61,0.5)]"></div>
-              </div>
-            </div>
-            
-            <div className="bg-white rounded-[2rem] p-7 shadow-sm border border-slate-100 flex flex-col min-h-[220px] group hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)] hover:border-[#A0813D]/20 transition-all duration-300 cursor-default overflow-hidden relative">
-              <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-              <GraduationCap strokeWidth={2.5} size={20} className="text-[#8B7355] mb-5 group-hover:scale-110 transition-transform duration-300" />
-              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 group-hover:text-[#00153D] transition-colors">Trainings</p>
-              <div className="text-[34px] font-black text-[#00153D] mb-auto tracking-tight relative z-10">62%</div>
-              <div className="w-full bg-slate-100 rounded-full h-[6px] mt-6 overflow-hidden relative z-10">
-                 <div className="bg-[#8B7355] h-[6px] rounded-full w-[62%] relative group-hover:bg-[#00153D] transition-colors duration-500"></div>
-              </div>
+              <div className="text-[34px] font-black text-[#00153D] mb-auto tracking-tight relative z-10">24</div>
+              <p className="text-[11px] text-[#A0813D] font-semibold mt-1 relative z-10">Total Events Attended</p>
             </div>
 
+            {/* Projects */}
             <div className="bg-white rounded-[2rem] p-7 shadow-sm border border-slate-100 flex flex-col min-h-[220px] group hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)] hover:border-[#A0813D]/20 transition-all duration-300 cursor-default overflow-hidden relative">
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
               <Rocket strokeWidth={2.5} size={20} className="text-[#8B7355] mb-5 group-hover:scale-110 transition-transform duration-300" />
@@ -71,24 +78,27 @@ export default function Dashboard() {
               </div>
             </div>
 
+            {/* Role (was Status) */}
             <div className="bg-white rounded-[2rem] p-7 shadow-sm border border-slate-100 flex flex-col min-h-[220px] group hover:-translate-y-1.5 hover:shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)] hover:border-[#A0813D]/20 transition-all duration-300 cursor-default overflow-hidden relative">
               <div className="absolute -top-10 -right-10 w-24 h-24 bg-gradient-to-br from-[#A0813D]/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
               <ShieldCheck strokeWidth={2.5} size={20} className="text-[#A0813D] mb-5 group-hover:scale-110 transition-transform duration-300" />
-              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 group-hover:text-[#00153D] transition-colors">Status</p>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2 group-hover:text-[#00153D] transition-colors">Role</p>
               <div className="flex flex-col gap-0 mb-auto relative z-10">
                  <div className="text-[22px] leading-tight font-black text-[#00153D]">LOM</div>
                  <div className="text-[22px] leading-tight font-black text-[#00153D]">Member</div>
               </div>
-              <p className="text-[11px] text-[#A0813D] font-semibold mt-4 w-4/5 leading-snug relative z-10">Verified since Jan 2023</p>
+              <p className="text-[11px] text-[#A0813D] font-semibold mt-4 w-4/5 leading-snug relative z-10">Member since Jan 2024</p>
             </div>
           </div>
 
+          {/* Upcoming Events */}
           <div>
             <div className="flex justify-between items-end mb-6 border-b border-slate-200 pb-4">
               <h2 className="text-lg font-bold text-[#00153D] relative after:absolute after:-bottom-[17px] after:left-0 after:w-12 after:h-1 after:bg-[#A0813D] after:rounded-full">Upcoming Events</h2>
-              <button className="text-sm font-semibold text-slate-500 hover:text-[#00153D] flex items-center gap-1 transition-colors">Explore All <ChevronRight size={14} /></button>
+              <button className="text-sm font-semibold text-slate-500 hover:text-[#00153D] flex items-center gap-1 transition-colors"
+                onClick={() => window.location.href = '/portal/events'}
+              >Explore All <ChevronRight size={14} /></button>
             </div>
-            
             <div className="grid grid-cols-2 gap-6">
               <Link to="/portal/events" className="bg-white rounded-[2rem] p-5 shadow-sm border border-slate-100 flex flex-col h-full group hover:shadow-md transition-shadow cursor-pointer">
                 <div className="relative rounded-2xl overflow-hidden h-40 mb-5 bg-[#00153D]">
@@ -126,54 +136,75 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 flex flex-col justify-between cursor-default">
-              <h3 className="font-bold text-[#00153D] text-[15px] mb-8">Participation Index</h3>
-              <div className="flex items-end justify-between gap-3 h-36 px-2 mt-auto">
-                  {[45, 60, 30, 85, 55, 70].map((val, i) => (
-                    <div key={i} className="w-full flex flex-col items-center gap-3 relative group h-[120px] justify-end">
-                      <div className="w-full bg-slate-50 rounded-2xl overflow-hidden relative h-full">
-                         <div 
-                          className={`absolute bottom-0 w-full rounded-2xl transition-all duration-700 ease-out border-t border-white/10 ${val === 85 ? 'bg-gradient-to-t from-[#A0813D] to-[#FBC764]' : 'bg-[#00153D]/5 group-hover:bg-gradient-to-t group-hover:from-[#00153D] group-hover:to-[#00255c]'}`} 
-                          style={{ height: `${val}%`, transitionDelay: `${i * 100}ms` }}
-                         >
-                            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-white/40 transition-colors"></div>
-                         </div>
-                      </div>
-                      <span className={`text-[9px] font-black uppercase tracking-widest ${val === 85 ? 'text-[#00153D]' : 'text-slate-400'}`}>
-                         {['Apr','May','Jun','Jul','Aug','Sep'][i]}
-                      </span>
-                      {/* Tooltip */}
-                      <div className="absolute -top-6 opacity-0 group-hover:opacity-100 transition-opacity bg-[#00153D] text-white text-[10px] py-1.5 px-3 rounded-lg font-bold whitespace-nowrap z-10 shadow-md">
-                         {val}% Activity
-                         <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#00153D]"></div>
-                      </div>
+          {/* Event Index — full 12 months with vertical breakdown tooltip */}
+          <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 flex flex-col justify-between cursor-default">
+            <h3 className="font-bold text-[#00153D] text-[15px] mb-6">Event Index</h3>
+            <div className="flex items-end justify-between gap-1.5 h-40 px-1 mt-auto">
+              {months.map((month, i) => (
+                <div
+                  key={i}
+                  className="flex-1 flex flex-col items-center gap-2 relative group h-[130px] justify-end"
+                  onMouseEnter={() => setHoveredMonth(i)}
+                  onMouseLeave={() => setHoveredMonth(null)}
+                >
+                  <div className="w-full bg-slate-50 rounded-xl overflow-hidden relative h-full">
+                    <div
+                      className={`absolute bottom-0 w-full rounded-xl transition-all duration-700 ease-out ${
+                    i === AUG_INDEX
+                      ? 'bg-gradient-to-t from-[#A0813D] to-[#FBC764]'
+                      : 'bg-slate-200 group-hover:bg-slate-300'
+                  }`}
+                      style={{ height: `${monthValues[i]}%`, transitionDelay: `${i * 60}ms` }}
+                    >
+                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white/20 group-hover:bg-white/40 transition-colors"></div>
                     </div>
-                 ))}
-              </div>
-            </div>
+                  </div>
+                  <span className={`text-[8px] font-black uppercase tracking-widest ${
+                    i === AUG_INDEX ? 'text-[#00153D]' : 'text-slate-400'
+                  }`}>
+                    {month}
+                  </span>
 
-            <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col cursor-default">
-               <div className="absolute top-0 right-0 w-40 h-40 bg-[#FAF9F6] rounded-bl-[4rem] -z-0"></div>
-               <h3 className="font-bold text-[#00153D] text-[15px] mb-6 relative z-10">Leadership Growth</h3>
-               <div className="flex flex-col items-center justify-center relative z-10 flex-1">
-                 
-                 <div className="relative flex items-center justify-center filter drop-shadow-sm">
-                    <svg width="120" height="120" viewBox="0 0 128 128" className="-rotate-90">
-                      <circle cx="64" cy="64" r="54" fill="none" stroke="#f8fafc" strokeWidth="10" />
-                      <circle cx="64" cy="64" r="54" fill="none" stroke="#A0813D" strokeWidth="10" strokeDasharray="339.29" strokeDashoffset="84.82" strokeLinecap="round" className="transition-all duration-1000" />
-                    </svg>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center">
-                      <span className="text-3xl font-black text-[#00153D] leading-none mt-2">75%</span>
-                      <span className="text-[8px] font-bold text-slate-400 tracking-widest uppercase mt-1">Efficiency</span>
+                  {/* Hover Tooltip — vertical breakdown */}
+                  {hoveredMonth === i && (
+                    <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 bg-[#00153D] text-white rounded-xl shadow-2xl z-50 p-3 min-w-[180px]">
+                      <p className="text-[9px] font-black uppercase tracking-widest text-[#FBC764] mb-2">{month} — Events</p>
+                      <div className="space-y-1">
+                        {Object.entries(verticalBreakdown).map(([key, val]) => (
+                          <div key={key} className="flex justify-between items-center gap-4">
+                            <span className="text-[10px] text-white/80 font-medium">{key}</span>
+                            <span className={`text-[10px] font-black ${val > 0 ? 'text-[#FBC764]' : 'text-white/30'}`}>{val}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#00153D]"></div>
                     </div>
-                 </div>
-
-                 <p className="text-[12px] font-medium text-slate-500 text-center mt-6 leading-relaxed">Top 5% performer in the <br/>Madurai region this quarter.</p>
-               </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
+          {/* Leadership Growth — now below Event Index */}
+          <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 relative overflow-hidden flex flex-col cursor-default">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-[#FAF9F6] rounded-bl-[4rem] -z-0"></div>
+            <h3 className="font-bold text-[#00153D] text-[15px] mb-6 relative z-10">Leadership Growth</h3>
+            <div className="flex flex-col items-center justify-center relative z-10 flex-1">
+              <div className="relative flex items-center justify-center filter drop-shadow-sm">
+                <svg width="120" height="120" viewBox="0 0 128 128" className="-rotate-90">
+                  <circle cx="64" cy="64" r="54" fill="none" stroke="#f8fafc" strokeWidth="10" />
+                  <circle cx="64" cy="64" r="54" fill="none" stroke="#A0813D" strokeWidth="10" strokeDasharray="339.29" strokeDashoffset="84.82" strokeLinecap="round" className="transition-all duration-1000" />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="text-3xl font-black text-[#00153D] leading-none mt-2">75%</span>
+                  <span className="text-[8px] font-bold text-slate-400 tracking-widest uppercase mt-1">Efficiency</span>
+                </div>
+              </div>
+              <p className="text-[12px] font-medium text-slate-500 text-center mt-6 leading-relaxed">Top 5% performer in the <br/>Madurai region this quarter.</p>
+            </div>
+          </div>
+
+          {/* Recent Accreditations */}
           <div>
             <div className="flex justify-between items-end mb-6 border-b border-slate-200 pb-4">
               <h2 className="text-lg font-bold text-[#00153D] relative after:absolute after:-bottom-[17px] after:left-0 after:w-12 after:h-1 after:bg-[#A0813D] after:rounded-full">Recent Accreditations</h2>
@@ -198,11 +229,12 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Right Sidebar */}
         <div className="space-y-6">
           <div className="bg-gradient-to-br from-[#00153D] via-[#00102e] to-[#000a1f] rounded-[2rem] p-8 shadow-[0_20px_50px_-20px_rgba(0,21,61,0.5)] text-white relative overflow-hidden group">
             <div className="absolute -right-10 -top-10 w-48 h-48 bg-[#A0813D]/20 rounded-full blur-3xl pointer-events-none group-hover:scale-150 group-hover:bg-[#A0813D]/30 transition-all duration-1000 ease-out"></div>
             <h3 className="font-bold text-lg mb-8 flex items-center gap-3 text-white">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner group-hover:-translate-y-1 transition-transform"><Megaphone size={18} className="text-[#FBC764]" /></div> 
+              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/10 shadow-inner group-hover:-translate-y-1 transition-transform"><Megaphone size={18} className="text-[#FBC764]" /></div>
               <span className="tracking-wide">Latest Updates</span>
             </h3>
             <div className="space-y-6 relative z-10">
@@ -250,13 +282,19 @@ export default function Dashboard() {
             </div>
           </div>
 
+          {/* Concierge Support — Connect Now → /contact */}
           <div className="bg-gradient-to-tr from-[#FAF9F6] to-white rounded-[2rem] p-8 border border-[#EBE3CD]/80 text-center shadow-[0_15px_40px_-15px_rgba(139,115,85,0.05)] cursor-default group hover:border-[#8B7355]/40 hover:-translate-y-1 transition-all">
             <div className="w-14 h-14 bg-white rounded-[1.25rem] flex items-center justify-center text-[#8B7355] mx-auto mb-5 shadow-[0_10px_30px_-10px_rgba(139,115,85,0.3)] border border-[#EBE3CD] group-hover:scale-110 group-hover:bg-[#8B7355] group-hover:text-white transition-all duration-300">
               <Headset strokeWidth={2.5} size={24} />
             </div>
             <h3 className="font-bold text-[#00153D] mb-3">Concierge Support</h3>
             <p className="text-[12px] font-medium text-slate-500 leading-relaxed mb-8 px-2">Our team is available 24/7 to assist with your membership journey.</p>
-            <button className="bg-white w-full py-4 rounded-xl text-xs font-bold text-[#00153D] shadow-sm border border-slate-200 hover:bg-[#00153D] hover:text-white transition-all tracking-wide">Connect Now</button>
+            <Link
+              to="/contact"
+              className="block bg-white w-full py-4 rounded-xl text-xs font-bold text-[#00153D] shadow-sm border border-slate-200 hover:bg-[#00153D] hover:text-white transition-all tracking-wide"
+            >
+              Connect Now
+            </Link>
           </div>
         </div>
       </div>

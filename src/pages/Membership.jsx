@@ -1,6 +1,44 @@
+import { useState, useEffect } from 'react'
 import { Calendar, MapPin, CheckCircle2, Briefcase, ChevronRight } from 'lucide-react'
 
+const heroSlides = [
+  {
+    src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2012&auto=format&fit=crop",
+    alt: "Youth Leaders Networking"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop",
+    alt: "Community Service Project"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+    alt: "Leadership Awards Ceremony"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2070&auto=format&fit=crop",
+    alt: "Professional Development Workshop"
+  },
+  {
+    src: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=2069&auto=format&fit=crop",
+    alt: "Civic Action & Volunteering"
+  },
+]
+
 export default function Membership() {
+  const [activeSlide, setActiveSlide] = useState(0)
+  const [fade, setFade] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false)
+      setTimeout(() => {
+        setActiveSlide(prev => (prev + 1) % heroSlides.length)
+        setFade(true)
+      }, 500)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <div className="pt-20">
       {/* Hero Section */}
@@ -26,13 +64,24 @@ export default function Membership() {
           </div>
         </div>
         
-        {/* Abstract Overlap Image as seen in design */}
+        {/* Auto-cycling Overlap Image Slider */}
         <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[40%] h-[80%] rounded-l-[40px] overflow-hidden shadow-2xl border-l-4 border-t-4 border-[#A0813D]/40">
-           <img 
-             src="https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1974&auto=format&fit=crop" 
-             alt="Professional Meeting" 
-             className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-           />
+          <img 
+            src={heroSlides[activeSlide].src}
+            alt={heroSlides[activeSlide].alt}
+            className="w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: fade ? 1 : 0 }}
+          />
+          {/* Slide Indicators */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+            {heroSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => { setFade(false); setTimeout(() => { setActiveSlide(i); setFade(true); }, 300) }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === activeSlide ? 'w-6 bg-[#A0813D]' : 'w-1.5 bg-white/40'}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

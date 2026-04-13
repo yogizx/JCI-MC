@@ -112,7 +112,7 @@ export default function PortalLayout() {
           </div>
           <div className="text-center">
             <h3 className="text-lg font-bold text-white leading-tight">Karthik Raja</h3>
-            <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest opacity-80">ID: S1S1049281</p>
+            <p className="text-xs text-slate-400 mt-1 uppercase tracking-widest opacity-80">Membership ID: S1S1049281</p>
           </div>
         </div>
 
@@ -216,14 +216,7 @@ export default function PortalLayout() {
               JCI Madurai Central
             </span>
 
-            <div className="hidden xl:flex items-center gap-6">
-              <Link to="/portal/directory" className="text-sm font-semibold text-slate-500 hover:text-[#00153D] transition-colors">
-                Member Directory
-              </Link>
-              <Link to="/portal/announcements" className="text-sm font-semibold text-slate-500 hover:text-[#00153D] transition-colors">
-                Announcements
-              </Link>
-            </div>
+
           </div>
 
           {/* Right: Search + Bell + User */}

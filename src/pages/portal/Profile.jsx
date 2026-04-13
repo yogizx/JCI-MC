@@ -57,67 +57,73 @@ export default function Profile() {
         
         {/* TOP: Profile Hero */}
         <Card className="mb-4">
-          <div className="flex flex-col sm:flex-row gap-6 items-start">
-            {/* Avatar */}
-            <div className="relative shrink-0">
-              <div className="w-28 h-28 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
-                <img
-                  src="https://img.freepik.com/premium-vector/avatar-man-short-hair-dark-skin_113065-517.jpg"
-                  alt="Rajesh Kumar"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <button className="absolute bottom-1 right-1 w-7 h-7 bg-white rounded-full shadow border border-slate-200 flex items-center justify-center text-slate-400">
-                <Camera size={13} />
-              </button>
-            </div>
-
-            {/* Name + Info */}
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2 mb-1">
-                <h1 className="text-xl font-bold text-slate-800">Rajesh Kumar</h1>
-                <CheckCircle size={18} className="text-emerald-500" fill="currentColor" />
-              </div>
-              <p className="text-sm text-slate-400 mb-1">JCI Member ID: <span className="text-blue-600 font-semibold">#4492-MD</span></p>
-              <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
-                <Phone size={13} /><span>+91 98765 43210</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
-                <Mail size={13} /><span>rajesh.kumar@example.com</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <button className="bg-blue-600 text-white px-5 py-2 rounded-lg text-xs font-semibold">Edit Profile</button>
-                <button className="border border-slate-200 text-slate-600 px-5 py-2 rounded-lg text-xs font-semibold">Change Password</button>
-                <button className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-5 py-2 rounded-full text-xs font-semibold flex items-center gap-1">
-                  <CheckCircle size={13} /> Member Certificate
+          <div className="flex flex-col gap-6">
+            {/* Avatar + Name Row */}
+            <div className="flex flex-col sm:flex-row gap-5 items-start">
+              {/* Avatar */}
+              <div className="relative shrink-0">
+                <div className="w-24 h-24 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+                  <img
+                    src="https://img.freepik.com/premium-vector/avatar-man-short-hair-dark-skin_113065-517.jpg"
+                    alt="Rajesh Kumar"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <button className="absolute bottom-1 right-1 w-7 h-7 bg-white rounded-full shadow border border-slate-200 flex items-center justify-center text-slate-400">
+                  <Camera size={13} />
                 </button>
               </div>
-            </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3 shrink-0">
-              <StatItem label="Date of Birth" val="15 May 1988" />
-              <StatItem label="Gender" val="Male" />
-              <StatItem label="Marital Status" val="Married" />
-              <StatItem label="Anniversary" val="22 Nov 2014" />
-              <div>
-                <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">Blood Group</p>
-                <p className="text-sm font-semibold text-red-500">O Positive</p>
+              {/* Name + Info + Buttons */}
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <h1 className="text-xl font-bold text-slate-800">Rajesh Kumar</h1>
+                  <CheckCircle size={18} className="text-emerald-500" fill="currentColor" />
+                </div>
+                <p className="text-sm text-slate-400 mb-1">JCI Member ID: <span className="text-blue-600 font-semibold">#4492-MD</span></p>
+                <div className="flex items-center gap-2 text-sm text-slate-500 mb-1">
+                  <Phone size={13} /><span>+91 98765 43210</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
+                  <Mail size={13} /><span>rajesh.kumar@example.com</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <button className="bg-blue-600 text-white px-5 py-2 rounded-lg text-xs font-semibold">Edit Profile</button>
+                  <button className="border border-slate-200 text-slate-600 px-5 py-2 rounded-lg text-xs font-semibold">Change Password</button>
+                  <button className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-1">
+                    <CheckCircle size={13} /> Member Certificate
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* QR */}
-            <div className="shrink-0 flex flex-col items-center gap-2">
-              <div className="bg-slate-900 rounded-xl p-3">
-                <QrCode size={80} className="text-white" />
+            {/* Stats + QR row — wraps on mobile */}
+            <div className="flex flex-col sm:flex-row gap-6 sm:items-start sm:justify-between border-t border-slate-100 pt-5">
+              {/* Stats */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3 flex-1">
+                <StatItem label="Date of Birth" val="15 May 1988" />
+                <StatItem label="Gender" val="Male" />
+                <StatItem label="Marital Status" val="Married" />
+                <StatItem label="Anniversary" val="22 Nov 2014" />
+                <div>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-wider mb-0.5">Blood Group</p>
+                  <p className="text-sm font-semibold text-red-500">O Positive</p>
+                </div>
               </div>
-              <p className="text-[10px] text-slate-400 uppercase tracking-wider text-center">Digital Member Pass</p>
+
+              {/* QR */}
+              <div className="shrink-0 flex flex-col items-center gap-2">
+                <div className="bg-slate-900 rounded-xl p-3">
+                  <QrCode size={72} className="text-white" />
+                </div>
+                <p className="text-[10px] text-slate-400 uppercase tracking-wider text-center">Digital Member Pass</p>
+              </div>
             </div>
           </div>
         </Card>
 
         {/* ROW 1: Communication | Govt ID | Address */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           <Card>
             <SectionHeader title="Communication" actionIcon={MoreHorizontal} />
             <div className="space-y-2">
@@ -159,7 +165,7 @@ export default function Profile() {
         {/* Business Overview Section */}
         <Card className="mb-4">
           <SectionHeader title="Business Overview" actionIcon={Edit3} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <StatItem label="Business Name" val="Skyline Design Studio" />
             <StatItem label="Business Role" val="Managing Director" />
             <StatItem label="Contact Number" val="+91 98765 12345" />
@@ -224,7 +230,7 @@ export default function Profile() {
         </div>
 
         {/* ROW 3: Documents | Membership | Social */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           <Card>
             <SectionHeader title="Documents Locker" />
             <div className="bg-slate-900 rounded-xl h-28 flex items-center justify-center mb-3">
@@ -268,11 +274,12 @@ export default function Profile() {
         </div>
 
         {/* ROW 4: Family | Blood + Foundation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Card>
             <SectionHeader title="Family Members" actionIcon={UserPlus} />
-            <div className="w-full">
-              <table className="w-full text-left">
+            {/* Scrollable on mobile */}
+            <div className="w-full overflow-x-auto -mx-1 px-1">
+              <table className="w-full min-w-[420px] text-left">
                 <thead>
                   <tr className="border-b border-slate-100">
                     <th className="pb-2 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Relation</th>

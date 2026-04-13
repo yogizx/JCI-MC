@@ -11,12 +11,12 @@ const navLinks = [
       { name: 'About JCI', path: '/about/jci' },
       { name: 'National President Message', path: '/about/president-message' },
       { name: 'JCI Creed', path: '/about/creed' },
-      { name: 'About JCI Madurai central', path: '/about' },
+      { name: 'About JCI Madurai Central', path: '/about' },
     ]
   },
   { name: 'Verticals', path: '/vertical' },
   { name: 'Join Us', path: '/membership' },
-  { name: 'Check Membership', path: '/check-membership' },
+  { name: 'Check Membership', path: '/check-membership', external: 'https://www.jciindia.in/validate-membership/' },
   { name: 'Contact Us', path: '/contact' },
 ]
 
@@ -111,6 +111,20 @@ export default function Navbar() {
                 )
               }
 
+              if (link.external) {
+                return (
+                  <a
+                    key={link.path}
+                    href={link.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative text-sm font-semibold transition-colors hover:text-[#00153D] text-slate-600"
+                  >
+                    {link.name}
+                  </a>
+                )
+              }
+
               return (
                 <Link
                   key={link.path}
@@ -171,6 +185,20 @@ export default function Navbar() {
                       ))}
                     </div>
                   </div>
+                )
+              }
+
+              if (link.external) {
+                return (
+                  <a
+                    key={link.path}
+                    href={link.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-bold text-slate-600"
+                  >
+                    {link.name}
+                  </a>
                 )
               }
 

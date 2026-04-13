@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-import { Heart, Globe, Shield, Star, Briefcase, ShieldCheck, Quote } from 'lucide-react'
+import { Check, UserPlus } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import henryImg from '../assets/Henry Giessenbier.jpg'
 
 export default function JCICreed() {
   useEffect(() => {
@@ -7,72 +9,75 @@ export default function JCICreed() {
   }, []);
 
   const creedLines = [
-    { text: "That faith in God gives meaning and purpose to human life", icon: <ShieldCheck size={28} /> },
-    { text: "That the brotherhood of man transcends the sovereignty of nations", icon: <Globe size={28} /> },
-    { text: "That economic justice can best be won by free men through free enterprise", icon: <Briefcase size={28} /> },
-    { text: "That government should be of laws rather than of men", icon: <Shield size={28} /> },
-    { text: "That earth’s great treasure lies in human personality", icon: <Star size={28} /> },
-    { text: "And that service to humanity is the best work of life", highlight: true, icon: <Heart size={28} /> }
+    "That faith in God gives meaning and purpose to human life",
+    "That the brotherhood of man transcends the sovereignty of nations",
+    "That economic justice can best be won by free men through free enterprise",
+    "That government should be of laws rather than of men",
+    "That earth's great treasure lies in human personality",
+    "And that service to humanity is the best work of life"
   ]
 
   return (
-    <div className="pt-20 font-montserrat min-h-screen bg-[#FAFAFA]">
-      {/* 1. Elegant Header */}
-      <section className="py-24 text-center">
-        <div className="max-w-[1440px] mx-auto px-6">
-          <span className="text-[#A0813D] font-black text-[10px] uppercase tracking-[0.6em] mb-4 inline-block animate-fade-in">
-            Universal Protocol
-          </span>
-          <h1 className="text-4xl md:text-6xl font-black text-[#00153D] tracking-tighter uppercase mb-6">
-            The JCI <span className="text-[#A0813D]">Creed</span>
-          </h1>
-          <div className="w-16 h-1 bg-[#A0813D] mx-auto rounded-full mb-10"></div>
-          <p className="text-slate-400 font-bold uppercase tracking-widest text-xs max-w-lg mx-auto leading-relaxed">
-            The foundational beliefs that guide our actions and inspire our community worldwide.
-          </p>
-        </div>
-      </section>
-
-      {/* 2. Focused Creed List */}
-      <section className="pb-32">
-        <div className="max-w-3xl mx-auto px-6 space-y-8">
+    <div className="pt-32 pb-24 font-jakarta bg-white min-h-screen">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           
-          <div className="text-center mb-16 relative">
-            <Quote className="text-[#A0813D]/10 absolute -top-10 left-1/2 -translate-x-1/2" size={100} />
-            <p className="text-2xl font-black text-[#00153D] uppercase tracking-[0.4em] relative z-10">We Believe</p>
-          </div>
-
-          {creedLines.map((line, i) => (
-            <div 
-              key={i} 
-              className={`group p-8 md:p-10 rounded-[2.5rem] border transition-all duration-500 flex flex-col items-center text-center gap-6 ${
-                line.highlight 
-                  ? 'bg-[#00153D] border-[#00153D] shadow-2xl scale-105' 
-                  : 'bg-white border-slate-100 hover:border-[#A0813D]/40 hover:shadow-xl hover:-translate-y-1'
-              }`}
-            >
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                line.highlight 
-                  ? 'bg-[#A0813D] text-[#00153D] rotate-12' 
-                  : 'bg-slate-50 text-[#A0813D] group-hover:bg-[#A0813D] group-hover:text-white group-hover:-rotate-12'
-              }`}>
-                {line.icon}
-              </div>
-              <p className={`text-xl md:text-2xl font-black leading-tight tracking-tight ${
-                line.highlight ? 'text-white' : 'text-[#00153D]'
-              }`}>
-                {line.text}
-              </p>
+          {/* Left Column: Founder Portrait */}
+          <div className="flex flex-col items-center">
+            <div className="w-full max-w-sm aspect-[3/4] overflow-hidden shadow-sm mb-6">
+              <img 
+                src={henryImg} 
+                alt="Henry Giessenbier" 
+                className="w-full h-full object-cover grayscale-[0.2]"
+              />
             </div>
-          ))}
-
-          {/* Legacy Footer Note */}
-          <div className="mt-20 pt-20 border-t border-slate-100 text-center">
-             <img src="https://jci.cc/wp-content/themes/jci/assets/img/logo-jci-blue.png" className="h-8 mx-auto grayscale opacity-20 mb-8" alt="JCI Logo" />
-             <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.5em]">Standardified Since 1944 • International Protocol</p>
+            <div className="text-center">
+              <h2 className="text-4xl font-bold text-[#00153D] tracking-tight mb-2">Henry Giessenbier</h2>
+              <p className="text-[#00153D] font-bold text-base mb-1 tracking-wide">Founder</p>
+              <p className="text-slate-500 text-md font-medium">Junior Chamber International</p>
+            </div>
           </div>
+
+          {/* Right Column: Creed Content */}
+          <div className="space-y-12">
+            <div>
+              <h1 className="text-5xl lg:text-7xl font-bold text-[#00153D] mb-12 tracking-tight">JCI Creed</h1>
+              
+              <div className="relative mb-14">
+                <p className="text-2xl font-bold text-[#2563EB] pb-4 px-1 inline-block">We believe</p>
+                <div className="absolute bottom-0 left-0 w-24 h-[3px] bg-[#2563EB]"></div>
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-slate-100 -z-10"></div>
+              </div>
+
+              <div className="space-y-8">
+                {creedLines.map((line, i) => (
+                  <div key={i} className="flex items-start gap-5 animate-in fade-in slide-in-from-left duration-500" style={{ animationDelay: `${i * 100}ms` }}>
+                    <div className="mt-1 w-6 h-6 rounded-full bg-[#2563EB] flex items-center justify-center shrink-0">
+                      <Check size={14} className="text-white stroke-[4px]" />
+                    </div>
+                    <p className="text-lg md:text-xl font-bold text-[#1e293b] leading-snug">
+                      {line}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* <div className="flex justify-start lg:justify-end pt-8">
+               <Link 
+                to="/membership" 
+                className="bg-[#FBC764] hover:bg-[#F9BC45] text-[#00153D] px-8 py-5 rounded-full font-bold text-lg flex items-center gap-3 shadow-xl transition-all hover:scale-105 active:scale-95"
+               >
+                 <div className="w-10 h-10 rounded-full bg-[#00153D]/10 flex items-center justify-center">
+                    <UserPlus size={20} className="text-[#00153D]" />
+                 </div>
+                 Become A Member
+               </Link>
+            </div> */}
+          </div>
+
         </div>
-      </section>
+      </div>
     </div>
   )
 }
