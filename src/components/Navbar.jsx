@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center">
-            <span className="text-xl font-black tracking-tight text-[#00153D] lg:text-2xl">
+            <span className="text-xl font-black tracking-tight text-jci-black lg:text-2xl">
               JCI Madurai Central
             </span>
           </Link>
@@ -80,14 +80,14 @@ export default function Navbar() {
                     ref={dropdownRef}
                   >
                     <button
-                      className={`flex items-center gap-1 text-sm font-semibold transition-colors hover:text-[#00153D] ${
-                        active || aboutDropdownOpen ? 'text-[#00153D]' : 'text-slate-600'
+                      className={`flex items-center gap-1 text-sm font-semibold transition-colors hover:text-jci-black ${
+                        active || aboutDropdownOpen ? 'text-jci-black' : 'text-slate-600'
                       }`}
                     >
                       {link.name}
                       <ChevronDown size={14} className={`transition-transform duration-200 ${aboutDropdownOpen ? 'rotate-180' : ''}`} />
                       {(active || aboutDropdownOpen) && (
-                        <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-[#A0813D]" />
+                        <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-jci-blue" />
                       )}
                     </button>
                     
@@ -100,7 +100,7 @@ export default function Navbar() {
                           <Link
                             key={idx}
                             to={subItem.path}
-                            className="block px-6 py-3 text-sm font-bold text-slate-600 hover:bg-[#F5F2EA] hover:text-[#A0813D] transition-colors border-b border-slate-50 last:border-0"
+                            className="block px-6 py-3 text-sm font-bold text-slate-600 hover:bg-jci-blue-25 hover:text-jci-blue transition-colors border-b border-slate-50 last:border-0"
                           >
                             {subItem.name}
                           </Link>
@@ -118,7 +118,7 @@ export default function Navbar() {
                     href={link.external}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative text-sm font-semibold transition-colors hover:text-[#00153D] text-slate-600"
+                    className="relative text-sm font-semibold transition-colors hover:text-jci-black text-slate-600"
                   >
                     {link.name}
                   </a>
@@ -129,13 +129,13 @@ export default function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative text-sm font-semibold transition-colors hover:text-[#00153D] ${
-                    active ? 'text-[#00153D]' : 'text-slate-600'
+                  className={`relative text-sm font-semibold transition-colors hover:text-jci-black ${
+                    active ? 'text-jci-black' : 'text-slate-600'
                   }`}
                 >
                   {link.name}
                   {active && (
-                    <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-[#A0813D]" />
+                    <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-jci-blue" />
                   )}
                 </Link>
               )
@@ -145,7 +145,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Link
               to="/login"
-              className="rounded-lg bg-[#00153D] px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-opacity-90 active:scale-95"
+              className="rounded-lg bg-jci-black px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-jci-navy active:scale-95"
             >
               Members Login
             </Link>
@@ -207,7 +207,7 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   className={`text-base font-bold ${
-                    active ? 'text-[#00153D]' : 'text-slate-600'
+                    active ? 'text-jci-black' : 'text-slate-600'
                   }`}
                 >
                   {link.name}
@@ -216,7 +216,7 @@ export default function Navbar() {
             })}
             <Link
               to="/login"
-              className="mt-4 inline-block w-full rounded-lg bg-[#00153D] py-3 text-center text-base font-bold text-white"
+              className="mt-4 inline-block w-full rounded-lg bg-jci-black py-3 text-center text-base font-bold text-white"
             >
               Members Login
             </Link>

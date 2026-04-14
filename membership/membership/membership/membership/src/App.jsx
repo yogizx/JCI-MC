@@ -81,13 +81,133 @@ const activityData = [
   },
 ];
 
-const categoryData = [
-  { name: "Technology & SaaS", value: 42, color: "from-indigo-600 to-violet-500" },
-  { name: "Creative Arts", value: 28, color: "from-violet-600 to-purple-500" },
-  { name: "Healthcare", value: 15, color: "from-fuchsia-500 to-pink-500" },
-  { name: "Financial Services", value: 15, color: "from-slate-700 to-slate-800" },
+const dashboardMemberCategories = [
+  { name: "LGB", value: "4,820", width: "96%", bar: "from-[#4e3ae9] to-[#6a42f5]" },
+  { name: "Members", value: "4,120", width: "82%", bar: "from-[#5a4df0] to-[#8f87ff]" },
+  { name: "Appointee", value: "3,450", width: "69%", bar: "from-[#6b63f3] to-[#9b96ff]" },
+  { name: "JAC", value: "2,910", width: "58%", bar: "from-[#7c83f6] to-[#a9b0ff]" },
+  { name: "Past President", value: "1,840", width: "41%", bar: "from-[#94a3b8] to-[#cbd5e1]" },
 ];
 
+const dashboardMemberSegments = [
+  { name: "Business", value: "1,200", width: "72%", bar: "from-[#4e3ae9] to-[#6a42f5]" },
+  { name: "Salaried", value: "940", width: "52%", bar: "from-[#7a73ff] to-[#9c97ff]" },
+];
+
+
+const eventVerticalSummary = [
+  { name: "Management", count: 48 },
+  { name: "Training", count: 36 },
+  { name: "Business", count: 29 },
+  { name: "Community Development", count: 24 },
+  { name: "Public Relationship & Marketing", count: 18 },
+  { name: "Growth & Development", count: 16 },
+  { name: "Internationalism", count: 12 },
+  { name: "Junior Jaycee", count: 20 },
+  { name: "Lady Jaycee", count: 15 },
+];
+
+const eventsVerticalData = [
+  {
+    id: 1,
+    title: "Management ",
+    vertical: "Management",
+    status: "LIVE",
+    badge: "MANAGEMENT",
+    meta: "Virtual · Admin Hall",
+    footer: "Capacity: 42 / 50",
+    image:
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 2,
+    title: "Trainer",
+    vertical: "Training",
+    status: "IN 2 DAYS",
+    badge: "TRAINING",
+    meta: "Oct 24, 2024 · 06:00 PM",
+    footer: "Guest: National Trainer",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 3,
+    title: "Business",
+    vertical: "Business",
+    status: "OPEN",
+    badge: "BUSINESS",
+    meta: "Nov 02, 2024 · 05:30 PM",
+    footer: "Capacity: 38 / 60",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 4,
+    title: "Community Development ",
+    vertical: "Community Development",
+    status: "UPCOMING",
+    badge: "COMMUNITY",
+    meta: "Dec 01, 2024 · 10:00 AM",
+    footer: "Venue: City Center",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 5,
+    title: "Public Relationship & Marketing",
+    vertical: "Public Relationship & Marketing",
+    status: "PENDING",
+    badge: "PR & MARKETING",
+    meta: "Dec 08, 2024 · 04:00 PM",
+    footer: "Capacity: 30 / 45",
+    image:
+      "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 6,
+    title: "Growth & Development",
+    vertical: "Growth & Development",
+    status: "OPEN",
+    badge: "GROWTH",
+    meta: "Dec 14, 2024 · 11:00 AM",
+    footer: "Venue: Grand Hyatt",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 7,
+    title: "Internationalism ",
+    vertical: "Internationalism",
+    status: "LIVE",
+    badge: "INTERNATIONAL",
+    meta: "Virtual · Zoom",
+    footer: "Global Speakers Panel",
+    image:
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 8,
+    title: "Junior Jaycee ",
+    vertical: "Junior Jaycee",
+    status: "IN 5 DAYS",
+    badge: "JUNIOR JAYCEE",
+    meta: "Jan 05, 2025 · 03:00 PM",
+    footer: "Capacity: 55 / 70",
+    image:
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    id: 9,
+    title: "Lady Jaycee ",
+    vertical: "Lady Jaycee",
+    status: "OPEN",
+    badge: "LADY JAYCEE",
+    meta: "Jan 12, 2025 · 05:00 PM",
+    footer: "Venue: Conference Hall",
+    image:
+      "https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80",
+  },
+];
 const stats = [
   {
     title: "Total Members",
@@ -625,15 +745,20 @@ function MemberCard({ member, onViewProfile, onDelete }) {
 }
 
 function AddMemberModal({ onClose, onAdd }) {
-  const TAG_TYPE_OPTIONS = ["Category", "Segment"];
-  const CATEGORY_OPTIONS = ["LGB", "Members", "Appointee", "JAC", "Past President"];
-  const SEGMENT_OPTIONS = ["Business", "Salaried"];
+ const MEMBERSHIP_CATEGORY_OPTIONS = [
+  "LGB",
+  "Members",
+  "Appointee",
+  "JAC",
+  "Past President",
+];
+const GENDER_OPTIONS = ["Male", "Female"];
   const ROLE_OPTIONS = ["President", "Secretary", "Treasurer", "Member", "Coordinator"];
   const BLOOD_GROUP_OPTIONS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   const BUSINESS_PROFILE_OPTIONS = ["Business", "Salaried"];
-  const TRAINER_OPTIONS = ["Zone Trainer", "National Trainer", "Author"];
+  const TRAINER_OPTIONS = ["Zone Trainer", "National Trainer", "Author", "Other", "NA"];
   const MARITAL_STATUS_OPTIONS = ["Single", "Married"];
-  const CHILD_GENDER_OPTIONS = ["M", "F"];
+  const CHILD_GENDER_OPTIONS = ["Male", "Female"];
 
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
@@ -641,11 +766,11 @@ function AddMemberModal({ onClose, onAdd }) {
     role: "",
     profileImage: "",
     dob: "",
+    gender: "",
     phone: "",
     email: "",
     bloodGroup: "",
     businessProfile: "",
-    tagType: "",
     tagValue: "",
     trainerDetails: "",
     maritalStatus: "Single",
@@ -767,12 +892,12 @@ function AddMemberModal({ onClose, onAdd }) {
       if (!form.name.trim()) nextErrors.name = true;
       if (!form.role.trim()) nextErrors.role = true;
       if (!form.dob) nextErrors.dob = true;
+      if (!form.gender) nextErrors.gender = true;
       if (!form.phone.trim()) nextErrors.phone = true;
       if (!form.email.trim()) nextErrors.email = true;
       if (!form.bloodGroup) nextErrors.bloodGroup = true;
       if (!form.businessProfile) nextErrors.businessProfile = true;
-      if (!form.tagType) nextErrors.tagType = true;
-      if (!form.tagValue) nextErrors.tagValue = true;
+     if (!form.tagValue) nextErrors.tagValue = true;
     }
 
     if (step === 2 && form.maritalStatus === "Married") {
@@ -870,7 +995,7 @@ function AddMemberModal({ onClose, onAdd }) {
       role: form.role.trim(),
       avatar: finalProfileImage,
       dot: "bg-emerald-500",
-      tags: [form.tagType, form.tagValue].filter(Boolean),
+      tags: [form.tagValue].filter(Boolean),
       about: "New member added to the directory.",
       profile: {
         profileImage: finalProfileImage,
@@ -880,6 +1005,7 @@ function AddMemberModal({ onClose, onAdd }) {
         phone: form.phone.trim(),
         email: form.email.trim(),
         dob: form.dob,
+        gender: form.gender,
         bloodGroup: form.bloodGroup,
         business: {
           type: form.businessProfile,
@@ -994,7 +1120,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>2. Role - Contribution</label>
+                <label className={labelClass}>2. JCI Contribution</label>
                 <select
                   name="role"
                   value={form.role}
@@ -1018,30 +1144,47 @@ function AddMemberModal({ onClose, onAdd }) {
                 )}
               </div>
 
-              <div>
-                <label className={labelClass}>4. Date of Birth</label>
-                <input
-                  type="date"
-                  name="dob"
-                  value={form.dob}
-                  onChange={handleChange}
-                  className={inputClass(errors.dob)}
-                />
-              </div>
+             <div>
+  <label className={labelClass}>4. Date of Birth</label>
+  <input
+    type="date"
+    name="dob"
+    value={form.dob}
+    onChange={handleChange}
+    className={inputClass(errors.dob)}
+  />
+</div>
+
+<div>
+  <label className={labelClass}>5. Gender</label>
+  <select
+    name="gender"
+    value={form.gender}
+    onChange={handleChange}
+    className={inputClass(errors.gender)}
+  >
+    <option value="">Select gender</option>
+    {GENDER_OPTIONS.map((item) => (
+      <option key={item} value={item}>
+        {item}
+      </option>
+    ))}
+  </select>
+</div>
+
+<div>
+  <label className={labelClass}>6. Phone</label>
+  <input
+    name="phone"
+    value={form.phone}
+    onChange={handleChange}
+    className={inputClass(errors.phone)}
+    placeholder="+91 9876543210"
+  />
+</div>
 
               <div>
-                <label className={labelClass}>5. Phone</label>
-                <input
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                  className={inputClass(errors.phone)}
-                  placeholder="+91 9876543210"
-                />
-              </div>
-
-              <div>
-                <label className={labelClass}>6. Email</label>
+                <label className={labelClass}>7. Email</label>
                 <input
                   type="email"
                   name="email"
@@ -1053,7 +1196,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>7. Member Blood Group</label>
+                <label className={labelClass}>8. Member Blood Group</label>
                 <select
                   name="bloodGroup"
                   value={form.bloodGroup}
@@ -1068,7 +1211,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>8. Business Profile</label>
+                <label className={labelClass}>9. Business Profile</label>
                 <select
                   name="businessProfile"
                   value={form.businessProfile}
@@ -1082,61 +1225,22 @@ function AddMemberModal({ onClose, onAdd }) {
                 </select>
               </div>
 
-              <div>
-                <label className={labelClass}>9. Tag Type</label>
-                <select
-                  name="tagType"
-                  value={form.tagType}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setForm((prev) => ({
-                      ...prev,
-                      tagType: value,
-                      tagValue: "",
-                    }));
-                  }}
-                  className={inputClass(errors.tagType)}
-                >
-                  <option value="">Select type</option>
-                  {TAG_TYPE_OPTIONS.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className={labelClass}>10. Tag</label>
-                <select
-                  name="tagValue"
-                  value={form.tagValue}
-                  onChange={handleChange}
-                  className={inputClass(errors.tagValue)}
-                >
-                  <option value="">
-                    {form.tagType === "Category"
-                      ? "Select category"
-                      : form.tagType === "Segment"
-                      ? "Select segment"
-                      : "First select type"}
-                  </option>
-
-                  {form.tagType === "Category" &&
-                    CATEGORY_OPTIONS.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-
-                  {form.tagType === "Segment" &&
-                    SEGMENT_OPTIONS.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                </select>
-              </div>
+             <div>
+  <label className={labelClass}>10. Membership Categories</label>
+  <select
+    name="tagValue"
+    value={form.tagValue}
+    onChange={handleChange}
+    className={inputClass(errors.tagValue)}
+  >
+    <option value="">Select membership category</option>
+    {MEMBERSHIP_CATEGORY_OPTIONS.map((item) => (
+      <option key={item} value={item}>
+        {item}
+      </option>
+    ))}
+  </select>
+</div>
 
               <div className="md:col-span-2">
                 <label className={labelClass}>11. Trainer Details</label>
@@ -2477,7 +2581,7 @@ function MembersPage({
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -2758,6 +2862,62 @@ function CategoryDistribution() {
   );
 }
 
+
+
+
+function MembersDistributionCards() {
+  const renderList = (items) => (
+    <div className="mt-6 space-y-5">
+      {items.map((item) => (
+        <div key={item.name}>
+          <div className="mb-2 flex items-center justify-between text-[13px] font-medium text-[#3b4250] sm:text-[14px]">
+            <span>{item.name}</span>
+            <span className="text-[#9aa2b0]">{item.value}</span>
+          </div>
+
+          <div className="h-2.5 overflow-hidden rounded-full bg-[#e8ebf2]">
+            <div
+              className={`h-full rounded-full bg-gradient-to-r ${item.bar}`}
+              style={{ width: item.width }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  return (
+    <section className="mt-5 grid grid-cols-1 gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
+      <div className="rounded-[30px] bg-white p-5 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-6 md:p-7">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-[1.6rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.8rem]">
+            Categories of Members
+          </h3>
+          <button className="text-[#98a0ae]">
+            <MoreHorizontal className="h-5 w-5" />
+          </button>
+        </div>
+
+        {renderList(dashboardMemberCategories)}
+      </div>
+
+      <div className="rounded-[30px] bg-white p-5 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-6 md:p-7">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-[1.6rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.8rem]">
+            Segment of Members
+          </h3>
+          <button className="text-[#98a0ae]">
+            <MoreHorizontal className="h-5 w-5" />
+          </button>
+        </div>
+
+        {renderList(dashboardMemberSegments)}
+      </div>
+    </section>
+  );
+}
+
+
 function RecentActivity() {
   return (
     <div className="rounded-[30px] bg-[#f3f6f9] p-4 shadow-[0_8px_24px_rgba(25,30,60,0.03)] ring-1 ring-[#edf0f5] sm:p-5 md:p-6 lg:p-8">
@@ -2796,7 +2956,7 @@ function RecentActivity() {
   );
 }
 
-function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, setShowSettingsPage }) {
+function AnalyticsPage({ onLogout,onNavigate,activePage,showSettingsPage,setShowSettingsPage,setSelectedEventVertical,}){
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -2843,22 +3003,23 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
                     setMobileMenuOpen(false);
                   }}
                 />
-                <SidebarItem
-                  icon={CalendarDays}
-                  label="Events"
-                  active={activePage === "events"}
-                  onClick={() => {
-                    onNavigate("events");
-                    setMobileMenuOpen(false);
-                  }}
-                />
+              <SidebarItem
+  icon={Calendar}
+  label="Events"
+  active={activePage === "events"}
+  onClick={() => {
+    setSelectedEventVertical("all");   // ⭐ இத தான் add
+    onNavigate("events");
+    setMobileMenuOpen(false);
+  }}
+/>
                 <SidebarItem
                   icon={BarChart3}
                   label="Analytics"
@@ -3029,7 +3190,44 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
               </div>
             </div>
 
-            <div className="rounded-[30px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
+
+
+
+
+ <div className="rounded-[28px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
+              <div className="flex items-center justify-between">
+                <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.7rem]">
+                  Segment of Members
+                </h3>
+                <button className="text-[#8f96a4] text-[16px] leading-none sm:text-[17px] md:text-[18px]">•••</button>
+              </div>
+
+              <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
+                <div>
+                  <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
+                    <span>Business</span>
+                    <span className="text-[#9aa2b0]">1,200</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
+                    <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5]" />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
+                    <span>Salaried</span>
+                    <span className="text-[#9aa2b0]">940</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
+                    <div className="h-full w-[48%] rounded-full bg-gradient-to-r from-[#7a73ff] to-[#9c97ff]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            </section>
+
+       <section className="mt-5 grid gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
+          <div className="rounded-[30px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.8rem]">
@@ -3081,94 +3279,49 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5]" />
               </div>
             </div>
-          </section>
 
-          <section className="mt-5 grid gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
-            <div className="rounded-[28px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
-              <div className="flex items-center justify-between">
-                <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.7rem]">
-                  Segment of Members
-                </h3>
-                <button className="text-[#8f96a4] text-[16px] leading-none sm:text-[17px] md:text-[18px]">•••</button>
-              </div>
+         <div className="rounded-[30px] bg-white p-7 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3]">
+  <div className="flex items-start justify-between gap-3">
+    <h3 className="text-[2rem] font-bold tracking-[-0.04em] text-[#1f2430]">
+      Events Vertical
+    </h3>
 
-              <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
-                <div>
-                  <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
-                    <span>Business</span>
-                    <span className="text-[#9aa2b0]">1,200</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
-                    <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5]" />
-                  </div>
-                </div>
+    <button
+      type="button"
+      className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4f35ec] sm:text-[11px] md:text-[12px]"
+      onClick={() => {
+        setSelectedEventVertical("all");
+        onNavigate("events");
+      }}
+    >
+      Detailed Report →
+    </button>
+  </div>
 
-                <div>
-                  <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
-                    <span>Salaried</span>
-                    <span className="text-[#9aa2b0]">940</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
-                    <div className="h-full w-[48%] rounded-full bg-gradient-to-r from-[#7a73ff] to-[#9c97ff]" />
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div className="mt-6 grid grid-cols-[1.6fr_0.5fr] text-[11px] font-bold uppercase tracking-[0.18em] text-[#a0a7b5] sm:text-[12px]">
+    <span>Vertical</span>
+    <span>Count</span>
+  </div>
 
-            <div className="rounded-[28px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.7rem]">
-                  Events Vertical
-                </h3>
-                <button className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4f35ec] sm:text-[11px] md:text-[12px]">
-                  Detailed Report →
-                </button>
-              </div>
+  <div className="mt-6 space-y-6 text-[13px] text-[#3c4350] sm:text-[14px] md:text-[15px]">
+    {eventVerticalSummary.map((item) => (
+      <button
+        key={item.name}
+        type="button"
+        onClick={() => {
+          setSelectedEventVertical(item.name);
+          onNavigate("events");
+        }}
+        className="grid w-full grid-cols-[1.6fr_0.5fr] items-center text-left transition hover:text-[#4f35ec]"
+      >
+        <span className="font-medium">{item.name}</span>
+        <span>{item.count}</span>
+      </button>
+    ))}
+  </div>
+</div>
 
-              <div className="mt-4 grid grid-cols-[1.6fr_0.5fr] text-[10px] font-bold uppercase tracking-[0.14em] text-[#a1a8b5] sm:mt-5 sm:text-[11px] md:mt-6 md:text-[12px]">
-                <span>Vertical</span>
-                <span>Count</span>
-              </div>
 
-              <div className="mt-4 space-y-4 text-[13px] text-[#3c4350] sm:mt-5 sm:space-y-5 sm:text-[14px] md:mt-6 md:space-y-6 md:text-[15px]">
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Management</span>
-                  <span>48</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Training</span>
-                  <span>36</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Business</span>
-                  <span>29</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Community Development</span>
-                  <span>24</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Public Relationship & Marketing</span>
-                  <span>18</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Growth & Development</span>
-                  <span>16</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Internationalism</span>
-                  <span>12</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Junior Jaycee</span>
-                  <span>20</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Lady Jaycee</span>
-                  <span>15</span>
-                </div>
-              </div>
-            </div>
           </section>
 
           <section className="mt-5 rounded-[34px] bg-[linear-gradient(135deg,#0f153d_0%,#1d1d66_55%,#262669_100%)] p-5 text-white shadow-[0_24px_50px_rgba(15,21,61,0.24)] sm:mt-6 sm:p-6 md:p-7 lg:p-8 xl:p-10">
@@ -3271,7 +3424,7 @@ function SettingsPage({ onLogout, onNavigate, activePage, showSettingsPage, setS
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -3589,7 +3742,14 @@ function SettingsPage({ onLogout, onNavigate, activePage, showSettingsPage, setS
   );
 }
 
-function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setShowSettingsPage }) {
+function EventsPage({ onLogout,onNavigate,activePage,showSettingsPage,setShowSettingsPage,selectedEventVertical,setSelectedEventVertical,}) {
+
+  const filteredEvents =
+  selectedEventVertical === "all"
+    ? eventsVerticalData
+    : eventsVerticalData.filter(
+        (item) => item.vertical === selectedEventVertical
+      );
   const [eventForm, setEventForm] = useState({
     name: "",
     category: "Management",
@@ -3598,6 +3758,7 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
     chiefGuest: "",
     guestOfHonor: "",
   });
+  
   const [bannerFile, setBannerFile] = useState(null);
   const [bannerPreview, setBannerPreview] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -3719,22 +3880,23 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
                     setMobileMenuOpen(false);
                   }}
                 />
-                <SidebarItem
-                  icon={CalendarDays}
-                  label="Events"
-                  active={activePage === "events"}
-                  onClick={() => {
-                    onNavigate("events");
-                    setMobileMenuOpen(false);
-                  }}
-                />
+              <SidebarItem
+  icon={Calendar}
+  label="Events"
+  active={activePage === "events"}
+  onClick={() => {
+    setSelectedEventVertical("all");   // ⭐ இத தான் add
+    onNavigate("events");
+    setMobileMenuOpen(false);
+  }}
+/>
                 <SidebarItem
                   icon={BarChart3}
                   label="Analytics"
@@ -4024,102 +4186,78 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
               </div>
             </div>
 
-            <section className="mt-6 sm:mt-7 md:mt-8">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <h2 className="text-[1.5rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.8rem] md:text-[2rem]">
-                    Active Schedule
-                  </h2>
-                  <p className="mt-1 text-[12px] text-[#8b92a1] sm:text-[13px] md:text-[14px]">
-                    Manage ongoing and upcoming events in your directory.
-                  </p>
-                </div>
+           <section className="mt-8">
+  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h2 className="text-[2.1rem] font-bold tracking-[-0.04em] text-[#1f2430]">
+        Events Vertical
+      </h2>
+      <button
+  className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4f35ec] sm:text-[11px] md:text-[12px]"
+  onClick={() => {
+    setSelectedEventVertical("all");
+    onNavigate("events");
+  }}
+>
+  Detailed Report →
+</button>
+      <p className="mt-2 text-[14px] text-[#7b8393]">
+        {selectedEventVertical === "all"
+          ? "Manage all event verticals in your directory."
+          : `${selectedEventVertical} events only.`}
+      </p>
+    </div>
 
-                <div className="inline-flex rounded-full bg-[#f3f4f6] p-1 ring-1 ring-[#ebeef3]">
-                  <button className="rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-[#1f2430] shadow-sm sm:px-4 sm:py-2 sm:text-[12px]">
-                    Grid
-                  </button>
-                  <button className="rounded-full px-3 py-1.5 text-[11px] font-semibold text-[#8b92a1] sm:px-4 sm:py-2 sm:text-[12px]">
-                    Timeline
-                  </button>
-                </div>
-              </div>
+    <div className="flex items-center gap-3">
+      {selectedEventVertical !== "all" && (
+        <button
+          type="button"
+          onClick={() => setSelectedEventVertical("all")}
+          className="rounded-full border border-[#d9deea] bg-white px-5 py-2.5 text-[13px] font-semibold text-[#4f5666]"
+        >
+          Show All
+        </button>
+      )}
+    </div>
+  </div>
 
-              <div className="mt-4 grid gap-4 sm:mt-5 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {eventCards.map((card) => (
-                  <div
-                    key={card.id}
-                    className="overflow-hidden rounded-[26px] bg-white shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3]"
-                  >
-                    <div className="relative">
-                      <img
-                        src={card.image}
-                        alt={card.title}
-                        className="h-[150px] w-full object-cover sm:h-[160px] md:h-[180px]"
-                      />
-                      <div className="absolute left-3 top-3 flex gap-2 sm:left-4 sm:top-4">
-                        <span className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] sm:px-3 sm:py-1 sm:text-[10px] ${card.statusClass}`}>
-                          {card.status}
-                        </span>
-                        <span className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] sm:px-3 sm:py-1 sm:text-[10px] ${card.tagClass}`}>
-                          {card.tag}
-                        </span>
-                      </div>
-                    </div>
+  <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+    {filteredEvents.map((event) => (
+      <div
+        key={event.id}
+        className="overflow-hidden rounded-[30px] bg-white shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3]"
+      >
+        <div className="relative">
+          <img
+            src={event.image}
+            alt={event.title}
+            className="h-[220px] w-full object-cover"
+          />
 
-                    <div className="p-4 sm:p-5">
-                      <h3 className="text-[1.15rem] font-bold leading-7 tracking-[-0.03em] text-[#1f2430] sm:text-[1.25rem] md:text-[1.35rem]">
-                        {card.title}
-                      </h3>
+          <div className="absolute left-5 top-5 flex gap-2">
+            <span className="rounded-full bg-[#ff5a5f] px-4 py-2 text-[12px] font-bold text-white">
+              {event.status}
+            </span>
+            <span className="rounded-full bg-[#0f1733] px-4 py-2 text-[12px] font-bold text-white">
+              {event.badge}
+            </span>
+          </div>
+        </div>
 
-                      <p className="mt-2 flex items-center gap-1.5 text-[11px] text-[#6f7787] sm:gap-2 sm:text-[12px] md:text-[13px]">
-                        <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                        {card.meta}
-                      </p>
+        <div className="p-6">
+          <h3 className="text-[1.1rem] font-bold text-[#1f2430]">
+            {event.title}
+          </h3>
 
-                      {card.avatars && (
-                        <div className="mt-4 flex items-center justify-between sm:mt-5">
-                          <div className="flex -space-x-1.5 sm:-space-x-2">
-                            {card.avatars.map((avatar, index) => (
-                              <img
-                                key={index}
-                                src={avatar}
-                                alt="attendee"
-                                className="h-6 w-6 rounded-full border-2 border-white object-cover sm:h-7 sm:w-7 md:h-8 md:w-8"
-                              />
-                            ))}
-                            <div className="flex h-6 min-w-[28px] items-center justify-center rounded-full border-2 border-white bg-[#f3f4f6] px-1.5 text-[10px] font-semibold text-[#667085] sm:h-7 sm:min-w-[32px] sm:px-2 sm:text-[11px] md:h-8">
-                              {card.extra}
-                            </div>
-                          </div>
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5f6f8] text-[#4f5665] sm:h-9 sm:w-9 md:h-10 md:w-10">
-                            <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                          </button>
-                        </div>
-                      )}
+          <p className="mt-3 text-[14px] text-[#7e8697]">{event.meta}</p>
+          <p className="mt-5 text-[14px] text-[#9aa2b0]">{event.footer}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
-                      {card.guest && (
-                        <div className="mt-4 flex items-center justify-between sm:mt-5">
-                          <p className="text-[10px] font-medium text-[#8b92a1] sm:text-[11px] md:text-[12px]">{card.guest}</p>
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5f6f8] text-[#4f5665] sm:h-9 sm:w-9 md:h-10 md:w-10">
-                            <Pencil className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                          </button>
-                        </div>
-                      )}
 
-                      {card.capacity && (
-                        <div className="mt-4 flex items-center justify-between sm:mt-5">
-                          <p className="text-[10px] font-medium text-[#8b92a1] sm:text-[11px] md:text-[12px]">{card.capacity}</p>
-                          <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f5f6f8] text-[#4f5665] sm:h-9 sm:w-9 md:h-10 md:w-10">
-                            <MoreVertical className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
           </div>
         </main>
       </div>
@@ -4302,7 +4440,7 @@ function Memberclassification({
 
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -4630,7 +4768,7 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -4715,10 +4853,13 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
             <GrowthChart />
           </section>
 
-          <section className="mt-5 space-y-6 sm:mt-6 sm:space-y-7 md:mt-7 md:space-y-8">
-            <CategoryDistribution />
-            <RecentActivity />
-          </section>
+         <>
+  <MembersDistributionCards />
+
+  <section className="mt-5 sm:mt-6 md:mt-7">
+    <RecentActivity />
+  </section>
+</>
         </main>
       </div>
     </div>
@@ -4729,7 +4870,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activePage, setActivePage] = useState("dashboard");
   const [showSettingsPage, setShowSettingsPage] = useState(false);
-
+  const [selectedEventVertical, setSelectedEventVertical] = useState("all");
   useEffect(() => {
     if (!showSettingsPage && activePage === "settings") {
       setActivePage("dashboard");
@@ -4757,29 +4898,32 @@ export default function App() {
     );
   }
 
-  if (activePage === "events") {
-    return (
-      <EventsPage
-        onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
-        activePage={activePage}
-        showSettingsPage={showSettingsPage}
-        setShowSettingsPage={setShowSettingsPage}
-      />
-    );
-  }
+ if (activePage === "events") {
+  return (
+    <EventsPage
+      onLogout={() => setIsLoggedIn(false)}
+      onNavigate={setActivePage}
+      activePage={activePage}
+      showSettingsPage={showSettingsPage}
+      setShowSettingsPage={setShowSettingsPage}
+      selectedEventVertical={selectedEventVertical}
+      setSelectedEventVertical={setSelectedEventVertical}
+    />
+  );
+}
 
-  if (activePage === "analytics") {
-    return (
-      <AnalyticsPage
-        onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
-        activePage={activePage}
-        showSettingsPage={showSettingsPage}
-        setShowSettingsPage={setShowSettingsPage}
-      />
-    );
-  }
+ if (activePage === "analytics") {
+  return (
+    <AnalyticsPage
+      onLogout={() => setIsLoggedIn(false)}
+      onNavigate={setActivePage}
+      activePage={activePage}
+      showSettingsPage={showSettingsPage}
+      setShowSettingsPage={setShowSettingsPage}
+      setSelectedEventVertical={setSelectedEventVertical}
+    />
+  );
+}
 
   if (activePage === "Memberclassification") {
     return (

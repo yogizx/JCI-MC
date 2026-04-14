@@ -23,6 +23,7 @@ import Profile from './pages/portal/Profile'
 import Events from './pages/portal/Events'
 import Projects from './pages/portal/Projects'
 import Resources from './pages/portal/Resources'
+import BrandShowcase from './pages/BrandShowcase'
 
 function AppLayout() {
   const location = useLocation()
@@ -47,6 +48,7 @@ function AppLayout() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/event/:id" element={<EventDetail />} />
           <Route path="/login" element={<MembersLogin />} />
+          <Route path="/brand" element={<BrandShowcase />} />
 
           <Route path="/portal" element={<PortalLayout />}>
             <Route index element={<Dashboard />} />
@@ -67,7 +69,7 @@ function AppLayout() {
           <WhatsAppButton />
           <Link
             to="/membership"
-            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 bg-[#A0813D] hover:bg-[#8B6D31] text-white flex items-center gap-2 px-5 py-3 lg:px-6 lg:py-4 rounded-full font-bold shadow-xl transition-all hover:scale-105 hover:-translate-y-1 active:scale-95 group border border-white/20"
+            className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 bg-jci-yellow hover:bg-jci-blue hover:text-white text-jci-black flex items-center gap-2 px-5 py-3 lg:px-6 lg:py-4 rounded-full font-bold shadow-xl transition-all hover:scale-105 hover:-translate-y-1 active:scale-95 group border border-black/10"
           >
             <UserPlus size={18} className="lg:w-5 lg:h-5 group-hover:rotate-12 transition-transform" />
             <span className="uppercase tracking-widest text-xs lg:text-sm hidden sm:inline">Become a Member</span>

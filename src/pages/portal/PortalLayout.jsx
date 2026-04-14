@@ -197,7 +197,7 @@ export default function PortalLayout() {
       </aside>
 
       {/* ── MAIN CONTENT ── */}
-      <main className="flex-1 lg:ml-64 min-h-screen flex flex-col">
+      <main className="flex-1 lg:ml-64 min-h-screen flex flex-col overflow-x-hidden relative">
 
         {/* ── HEADER ── */}
         <header className="h-16 lg:h-20 bg-white/90 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-4 lg:px-10 sticky top-0 z-40 shadow-sm">

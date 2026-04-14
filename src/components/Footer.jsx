@@ -4,7 +4,7 @@ import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'luc
 
 export default function Footer() {
   return (
-    <footer className="bg-[#000814] pb-10 pt-24 text-white font-jakarta">
+    <footer className="bg-jci-black pb-10 pt-24 text-white font-jakarta">
       <div className="mx-auto max-w-[1440px] px-6 lg:px-12">
         <div className="grid grid-cols-1 gap-16 pb-16 lg:grid-cols-12 border-b border-white/10">
           
@@ -21,7 +21,7 @@ export default function Footer() {
                 { Icon: Twitter, url: '#' },
                 { Icon: Linkedin, url: '#' }
               ].map((item, i) => (
-                <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition hover:bg-[#A0813D] hover:border-[#A0813D]">
+                <a key={i} href={item.url} target="_blank" rel="noopener noreferrer" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 transition hover:bg-jci-blue hover:border-jci-blue">
                   <item.Icon size={20} />
                 </a>
               ))}
@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* Quick links 1 */}
           <div className="lg:col-span-2">
-            <h4 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-[#A0813D]">Quick Links</h4>
+            <h4 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-jci-blue">Quick Links</h4>
             <ul className="space-y-4 text-sm text-slate-400 font-bold">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About JCI</Link></li>
@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* Quick links 2 */}
           <div className="lg:col-span-2">
-            <h4 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-[#A0813D]">Resources</h4>
+            <h4 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-jci-blue">Resources</h4>
             <ul className="space-y-4 text-sm text-slate-400 font-bold">
               <li><Link to="/about" className="hover:text-white transition-colors">TOYP Information</Link></li>
               <li><Link to="/vertical" className="hover:text-white transition-colors">Verticals</Link></li>
@@ -57,18 +57,18 @@ export default function Footer() {
 
           {/* Contact Details */}
           <div className="lg:col-span-4">
-            <h4 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-[#A0813D]">Contact Info</h4>
+            <h4 className="mb-8 text-sm font-black uppercase tracking-[0.2em] text-jci-blue">Contact Info</h4>
             <div className="space-y-6 text-slate-400 font-medium">
               <div className="flex gap-4">
-                <MapPin className="shrink-0 text-[#A0813D]" size={20} />
+                <MapPin className="shrink-0 text-jci-blue" size={20} />
                 <p className="text-sm">4691, Villapuram Housing Board, Jaihindpuram Main Road, Madurai, Tamil Nadu 625011</p>
               </div>
               <div className="flex items-center gap-4">
-                <Phone className="shrink-0 text-[#A0813D]" size={20} />
+                <Phone className="shrink-0 text-jci-blue" size={20} />
                 <a href="tel:+919943364066" className="text-sm hover:text-white transition-colors">+91-9943364066</a>
               </div>
               <div className="flex items-center gap-4">
-                <Mail className="shrink-0 text-[#A0813D]" size={20} />
+                <Mail className="shrink-0 text-jci-blue" size={20} />
                 <a href="mailto:maduraicentraljci@gmail.com" className="text-sm hover:text-white transition-colors">maduraicentraljci@gmail.com</a>
               </div>
             </div>

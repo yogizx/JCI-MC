@@ -1,4 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+/*
+ * JCI Brand Guidelines v1.2 (2026)
+ * Colours & Typography applied
+ *
+ * PRIMARY TYPEFACE : Plus Jakarta Sans (Light 300, Regular 400, Medium 500,
+ *                    SemiBold 600, Bold 700, ExtraBold 800)
+ * SECONDARY TYPEFACE: Arvo (quotes & callouts in editorial layouts only)
+ * FALLBACK TYPEFACE : Readex Pro (Canva without Pro account only)
+ *
+ * PRIMARY COLOURS
+ *   JCI Blue   #0097D7  — dominant brand colour
+ *   JCI Black  #130F2D  — deep navy-black
+ *   JCI White  #FFFFFF
+ *
+ * SECONDARY COLOURS
+ *   JCI Navy   #1F4789  — analogous to blue
+ *   JCI Teal   #57BCBC  — analogous to blue
+ *   JCI Yellow #EFC40F  — accent only, use sparingly
+ */
+
+/* Google Fonts — Primary + Secondary + Fallback */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Arvo:wght@400;700&family=Readex+Pro:wght@200;300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,25 +27,121 @@
 
 @layer base {
   :root {
-    --primary-navy: #00153D;
-    --accent-gold: #A0813D;
-    --text-primary: #1C1C1C;
-    --text-secondary: #4A4A4A;
-    --bg-light: #F8F9FA;
+    /* ── Primary colours ─────────────────────────────── */
+    --jci-blue:       #0097D7;
+    --jci-black:      #130F2D;
+    --jci-white:      #FFFFFF;
+
+    /* ── Secondary colours ───────────────────────────── */
+    --jci-navy:       #1F4789;
+    --jci-teal:       #57BCBC;
+    --jci-yellow:     #EFC40F;
+
+    /* ── Tints (75 / 50 / 25 %) ─────────────────────── */
+    --jci-blue-75:    #40AEE0;
+    --jci-blue-50:    #80CBEB;
+    --jci-blue-25:    #BFE5F5;
+    --jci-black-75:   #504C6A;
+    --jci-black-50:   #8887A6;
+    --jci-black-25:   #C3C3D2;
+    --jci-navy-75:    #5575A7;
+    --jci-navy-50:    #8FA3C4;
+    --jci-navy-25:    #C7D1E1;
+    --jci-teal-75:    #82CDCD;
+    --jci-teal-50:    #ABDEDE;
+    --jci-teal-25:    #D5EEEE;
+    --jci-yellow-75:  #F4D34B;
+    --jci-yellow-50:  #F7E187;
+    --jci-yellow-25:  #FBF0C3;
+
+    /* ── Semantic aliases ────────────────────────────── */
+    --text-primary:   var(--jci-black);     /* body text on light bg */
+    --text-secondary: var(--jci-black-75);  /* secondary / caption text */
+    --bg-light:       #F4F6F8;              /* neutral light background */
   }
 
   body {
+    /* Primary typeface — used for ALL brand communications */
     font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
     color: var(--text-primary);
-    background: white;
+    background: var(--jci-white);
   }
 
   * {
     box-sizing: border-box;
   }
+
+  /* ── Type Hierarchy (per brand guidelines) ─────────────────────────────── */
+  /* Title — Plus Jakarta Sans Regular 48pt / 120% leading */
+  h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: 3rem;        /* ≈ 48pt */
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  /* Subtitle — Plus Jakarta Sans Regular 24pt / 130% leading */
+  h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;      /* ≈ 24pt */
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+
+  /* Subheading — Plus Jakarta Sans SemiBold 20pt / 140% leading */
+  h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;     /* ≈ 20pt */
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  /* Paragraph — Plus Jakarta Sans Regular 16pt / 140% leading */
+  p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;        /* 16pt */
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+
+  /* Quote — Arvo Regular 24pt / 130% leading (editorial only) */
+  blockquote {
+    font-family: 'Arvo', serif;
+    font-weight: 400;
+    font-size: 1.5rem;      /* ≈ 24pt */
+    line-height: 1.3;
+    letter-spacing: 0;
+    color: var(--jci-blue);
+  }
 }
 
 @layer utilities {
+  /* ── JCI Typography utilities ───────────────────────────────────────────── */
+  /* Use font-jakarta for primary type (all brand comms) */
+  .font-jakarta {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  /* Use font-arvo for quotes & callouts in editorial layouts ONLY */
+  .font-arvo {
+    font-family: 'Arvo', serif;
+  }
+  /* Use font-readex as Canva fallback only */
+  .font-readex {
+    font-family: 'Readex Pro', sans-serif;
+  }
+
+  /* ── JCI Text colour utilities (shortcuts) ───────────────────────────────── */
+  .text-jci-blue-brand  { color: #0097D7; }
+  .bg-jci-blue-brand    { background-color: #0097D7; }
+  .text-jci-black-brand { color: #130F2D; }
+  .bg-jci-black-brand   { background-color: #130F2D; }
+  .text-jci-yellow-brand{ color: #EFC40F; }
+  .bg-jci-yellow-brand  { background-color: #EFC40F; }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }

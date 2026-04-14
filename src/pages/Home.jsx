@@ -53,7 +53,7 @@ export default function Home() {
               <span>Transforming</span>
               <span>Passion into <span className="text-[#A0813D]">Action</span></span>
             </h1>
-            <p className="text-xl lg:text-2xl text-slate-300 mb-12 max-w-2xl leading-relaxed font-medium flex flex-col gap-2">
+            <p className="text-lg lg:text-xl text-slate-300 mb-12 max-w-2xl leading-relaxed font-medium flex flex-col gap-2">
               <span>Empower yourself.</span>
               <span>Impact your community.</span>
               <span>Shape the future.</span>

@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import saran from "./assets/my-avatar.jpg";
+import logo from "./assets/JCI Madurai Central.png";
+
 import {
   Lock,
   Mail,
@@ -40,6 +42,8 @@ import {
   AlertCircle,
   Save,
   Menu,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const activityData = [
@@ -115,7 +119,7 @@ const stats = [
   },
   {
     title: "Top Category Growth",
-    value: "FinTech",
+    value: "LGB",
     icon: TrendingUp,
     badge: "",
     badgeClass: "",
@@ -250,29 +254,43 @@ function getMissingProfileFields(profile) {
 }
 
 function LoginPage({ onLogin, onGoogleLogin }) {
-  const [email, setEmail] = useState("admin@curator.com");
+  const [email, setEmail] = useState("admin@jci.com");
   const [password, setPassword] = useState("123456");
 
   return (
-    <div className="min-h-screen bg-[#eef0f5] px-4 py-6">
-      <div className="flex min-h-[calc(100vh-3rem)] items-center justify-center">
-        <section className="w-full max-w-[460px] rounded-[30px] border border-[#e5e8f0] bg-[#fbfbfd] px-5 py-8 shadow-[0_20px_60px_rgba(25,30,60,0.08)] sm:px-7 sm:py-10 md:px-10 md:px-12">
-          <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)]">
-            <Grid2X2 className="h-5 w-5" />
-          </div>
+    <div className="flex min-h-screen bg-white">
+      {/* Left side: Logo / Branding */}
+      <div className="hidden w-1/2 flex-col items-center justify-center bg-[#f8f9ff] p-12 lg:flex">
+        <div className="max-w-[400px] text-center">
+          <img src={logo} alt="JCI Madurai Central Logo" className="mx-auto mb-8 w-64 object-contain" />
+          <h2 className="text-[2.5rem] font-bold tracking-tight text-[#1f2430]">
+            JCI Madurai Central
+          </h2>
+          <p className="mt-4 text-[1.1rem] text-[#6b7280]">
+            Empowering young leaders to create positive change in our community.
+          </p>
+        </div>
+      </div>
 
-          <h1 className="text-[2rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[2.4rem] sm:text-[2.8rem]">
-            Welcome back
+      {/* Right side: Login form */}
+      <div className="flex w-full items-center justify-center p-6 lg:w-1/2">
+        <section className="w-full max-w-[460px] rounded-[30px] border border-[#e5e8f0] bg-[#fbfbfd] px-5 py-8 shadow-[0_20px_60px_rgba(25,30,60,0.08)] sm:px-7 sm:py-10 md:px-12">
+          <div className="mb-7 lg:hidden">
+            <img src={logo} alt="JCI Logo" className="h-16 object-contain" />
+          </div>
+          
+          <h1 className="text-[2rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[2.4rem]">
+            Admin Portal
           </h1>
 
           <p className="mt-3 text-[15px] leading-7 text-[#8c90a0] sm:text-[16px]">
-            Sign in to manage your operations and insights.
+            Please sign in to access the JCI Madurai Central management dashboard.
           </p>
 
-          <div className="mt-8 space-y-6 sm:mt-10 sm:space-y-7">
+          <div className="mt-8 space-y-6 sm:mt-10">
             <div>
               <label className="mb-3 block text-[13px] font-semibold text-[#7c8191]">
-                Business Email
+                Email Address
               </label>
 
               <div className="flex h-[54px] items-center gap-3 rounded-[14px] border border-[#ebedf4] bg-white px-4 shadow-sm transition focus-within:border-[#cec6ff] focus-within:ring-4 focus-within:ring-[#ece9ff] sm:h-[58px]">
@@ -282,7 +300,7 @@ function LoginPage({ onLogin, onGoogleLogin }) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-transparent text-[14px] text-[#4d5364] outline-none placeholder:text-[#b5b9c6] sm:text-[15px]"
-                  placeholder="name@company.com"
+                  placeholder="admin@jcimaduraicentral.com"
                 />
               </div>
             </div>
@@ -318,19 +336,19 @@ function LoginPage({ onLogin, onGoogleLogin }) {
               type="checkbox"
               className="h-4 w-4 rounded border-[#d7dbe7] text-[#5b3df5]"
             />
-            Remember this device for 30 days
+            Keep me signed in
           </label>
 
           <button
             onClick={onLogin}
             className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-gradient-to-r from-[#5b3df5] to-[#6c40f6] text-[14px] font-semibold text-white shadow-[0_18px_30px_rgba(91,61,245,0.30)] transition hover:-translate-y-0.5 sm:mt-7 sm:h-[58px] sm:text-[15px]"
           >
-            Sign in to Dashboard
+            Sign in to Portal
           </button>
 
           <div className="my-6 flex items-center gap-4 text-[13px] text-[#b0b4c0] sm:my-8">
             <div className="h-px flex-1 bg-[#eceef4]" />
-            <span>Or continue with</span>
+            <span>Or access with</span>
             <div className="h-px flex-1 bg-[#eceef4]" />
           </div>
 
@@ -349,18 +367,8 @@ function LoginPage({ onLogin, onGoogleLogin }) {
               <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.5-5.2l-6.2-5.2c-2.1 1.6-4.6 2.4-7.3 2.4-5.2 0-9.6-3.3-11.2-8l-6.5 5C9.6 39.6 16.3 44 24 44z"/>
               <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-3.3 5.5-6 7.1l.1-.1 6.2 5.2C35.2 40.5 44 34 44 24c0-1.3-.1-2.3-.4-3.5z"/>
             </svg>
-            Continue with Google
+            Google Workspace
           </button>
-
-          <p className="mt-6 text-center text-[13px] leading-7 text-[#9aa0ae] sm:mt-8 sm:text-[14px]">
-            Don&apos;t have an account yet?{" "}
-            <button
-              type="button"
-              className="font-semibold text-[#6b57f5] hover:opacity-80"
-            >
-              Contact Enterprise Sales
-            </button>
-          </p>
         </section>
       </div>
     </div>
@@ -446,11 +454,11 @@ function SettingsToggleBlock({
 const initialMembers = [
   {
     name: "Sarankumar R",
-    role: "Software Engineer",
+    role: "Member Contribution",
     avatar: saran,
     dot: "bg-emerald-500",
-    tags: ["Figma", "Motion", "Design Ops"],
-    about: "Crafting scalable design systems for modern products.",
+    tags: ["LGB", "Business"],
+    about: "",
     profile: {
       profileImage: saran,
       memberId: "MBR-1001",
@@ -497,12 +505,12 @@ const initialMembers = [
   },
   {
     name: "Sarah Lindholm",
-    role: "Senior UI Designer",
+    role: "Member",
     avatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
     dot: "bg-emerald-500",
-    tags: ["Figma", "Motion", "Design Ops"],
-    about: "Crafting scalable design systems for modern products.",
+    tags: ["LGB", "Business"],
+    about: "",
     profile: {
       profileImage:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
@@ -531,12 +539,12 @@ const initialMembers = [
   },
   {
     name: "Sarah Lindholm",
-    role: "Frontend Architect",
+    role: "Member Contribution",
     avatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
     dot: "bg-sky-500",
-    tags: ["React", "Next.js", "Rust"],
-    about: "Passionate about performance and thoughtful UI architecture.",
+    tags: ["JAC", "Salaried"],
+    about: "",
     profile: {
       profileImage:
         "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
@@ -585,7 +593,7 @@ function MemberCard({ member, onViewProfile, onDelete }) {
         <span className="block">{member.name.split(" ").slice(1).join(" ")}</span>
       </h3>
 
-      <p className="mt-2 text-center text-[12px] text-[#6e76a0] sm:text-[13px]">{member.role}</p>
+      <p className="mt-2 text-center text-[12px] text-[#6e76a0] sm:text-[13px] font-medium text-emerald-600 uppercase tracking-widest">{member.role}</p>
 
       <div className="mt-3 flex flex-wrap justify-center gap-2 sm:mt-4">
         {(member.tags || []).map((tag) => (
@@ -598,18 +606,15 @@ function MemberCard({ member, onViewProfile, onDelete }) {
         ))}
       </div>
 
-      <p className="mt-4 text-center text-[12px] leading-6 text-[#707785] sm:mt-5 sm:text-[13px]">{member.about}</p>
+      {/* Removed about text as requested */}
 
       <div className="mt-5 flex flex-col gap-3 sm:mt-6">
-        <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
+        <div className="flex flex-col gap-2">
           <button
             onClick={() => onViewProfile(member)}
-            className="rounded-full border border-[#d7dbe4] bg-white py-2 text-[11px] font-semibold text-[#666f80] sm:flex-1 sm:py-2.5 sm:text-[12px]"
+            className="rounded-full border border-[#d7dbe4] bg-white py-2 text-[11px] font-semibold text-[#666f80] sm:py-2.5 sm:text-[12px] hover:bg-gray-50"
           >
             View Profile
-          </button>
-          <button className="rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5] py-2 text-[11px] font-semibold text-white shadow-[0_14px_22px_rgba(78,58,233,0.22)] sm:flex-1 sm:py-2.5 sm:text-[12px]">
-            Connect
           </button>
         </div>
 
@@ -631,7 +636,7 @@ function AddMemberModal({ onClose, onAdd }) {
   const ROLE_OPTIONS = ["President", "Secretary", "Treasurer", "Member", "Coordinator"];
   const BLOOD_GROUP_OPTIONS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   const BUSINESS_PROFILE_OPTIONS = ["Business", "Salaried"];
-  const TRAINER_OPTIONS = ["Zone Trainer", "National Trainer", "Author"];
+  const TRAINER_OPTIONS = ["Zone Trainer", "National Trainer", "Author", "Others", "NA"];
   const MARITAL_STATUS_OPTIONS = ["Single", "Married"];
   const CHILD_GENDER_OPTIONS = ["M", "F"];
 
@@ -678,9 +683,12 @@ function AddMemberModal({ onClose, onAdd }) {
     instagram: "",
     youtube: "",
     linkedin: "",
+    gender: "",
     otherSocialName: "",
     otherSocialLink: "",
   });
+
+  const today = new Date().toISOString().split("T")[0];
 
   const [businessGallery, setBusinessGallery] = useState([]);
   const [errors, setErrors] = useState({});
@@ -771,8 +779,8 @@ function AddMemberModal({ onClose, onAdd }) {
       if (!form.email.trim()) nextErrors.email = true;
       if (!form.bloodGroup) nextErrors.bloodGroup = true;
       if (!form.businessProfile) nextErrors.businessProfile = true;
-      if (!form.tagType) nextErrors.tagType = true;
       if (!form.tagValue) nextErrors.tagValue = true;
+      if (!form.gender) nextErrors.gender = true;
     }
 
     if (step === 2 && form.maritalStatus === "Married") {
@@ -870,7 +878,7 @@ function AddMemberModal({ onClose, onAdd }) {
       role: form.role.trim(),
       avatar: finalProfileImage,
       dot: "bg-emerald-500",
-      tags: [form.tagType, form.tagValue].filter(Boolean),
+      tags: [form.tagValue].filter(Boolean),
       about: "New member added to the directory.",
       profile: {
         profileImage: finalProfileImage,
@@ -994,7 +1002,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>2. Role - Contribution</label>
+                <label className={labelClass}>2. Contribution</label>
                 <select
                   name="role"
                   value={form.role}
@@ -1024,13 +1032,29 @@ function AddMemberModal({ onClose, onAdd }) {
                   type="date"
                   name="dob"
                   value={form.dob}
+                  max={today}
                   onChange={handleChange}
                   className={inputClass(errors.dob)}
                 />
               </div>
 
               <div>
-                <label className={labelClass}>5. Phone</label>
+                <label className={labelClass}>5. Gender</label>
+                <select
+                  name="gender"
+                  value={form.gender}
+                  onChange={handleChange}
+                  className={inputClass(errors.gender)}
+                >
+                  <option value="">Select gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className={labelClass}>6. Phone</label>
                 <input
                   name="phone"
                   value={form.phone}
@@ -1041,7 +1065,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>6. Email</label>
+                <label className={labelClass}>7. Email</label>
                 <input
                   type="email"
                   name="email"
@@ -1053,7 +1077,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>7. Member Blood Group</label>
+                <label className={labelClass}>8. Member Blood Group</label>
                 <select
                   name="bloodGroup"
                   value={form.bloodGroup}
@@ -1068,7 +1092,7 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>8. Business Profile</label>
+                <label className={labelClass}>9. Business Profile</label>
                 <select
                   name="businessProfile"
                   value={form.businessProfile}
@@ -1082,59 +1106,22 @@ function AddMemberModal({ onClose, onAdd }) {
                 </select>
               </div>
 
-              <div>
-                <label className={labelClass}>9. Tag Type</label>
-                <select
-                  name="tagType"
-                  value={form.tagType}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setForm((prev) => ({
-                      ...prev,
-                      tagType: value,
-                      tagValue: "",
-                    }));
-                  }}
-                  className={inputClass(errors.tagType)}
-                >
-                  <option value="">Select type</option>
-                  {TAG_TYPE_OPTIONS.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {/* Removed Tag Type field as requested */}
 
               <div>
-                <label className={labelClass}>10. Tag</label>
+                <label className={labelClass}>10. Membership Categories</label>
                 <select
                   name="tagValue"
                   value={form.tagValue}
                   onChange={handleChange}
                   className={inputClass(errors.tagValue)}
                 >
-                  <option value="">
-                    {form.tagType === "Category"
-                      ? "Select category"
-                      : form.tagType === "Segment"
-                      ? "Select segment"
-                      : "First select type"}
-                  </option>
-
-                  {form.tagType === "Category" &&
-                    CATEGORY_OPTIONS.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-
-                  {form.tagType === "Segment" &&
-                    SEGMENT_OPTIONS.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
+                  <option value="">Select category</option>
+                  {CATEGORY_OPTIONS.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -1193,6 +1180,7 @@ function AddMemberModal({ onClose, onAdd }) {
                       type="date"
                       name="spouseDob"
                       value={form.spouseDob}
+                      max={today}
                       onChange={handleChange}
                       className={inputClass(errors.spouseDob)}
                     />
@@ -1219,6 +1207,7 @@ function AddMemberModal({ onClose, onAdd }) {
                       type="date"
                       name="anniversary"
                       value={form.anniversary}
+                      max={today}
                       onChange={handleChange}
                       className={inputClass(errors.anniversary)}
                     />
@@ -1256,6 +1245,7 @@ function AddMemberModal({ onClose, onAdd }) {
                           type="date"
                           name="child1Dob"
                           value={form.child1Dob}
+                          max={today}
                           onChange={handleChange}
                           className={inputClass(errors.child1Dob)}
                         />
@@ -1311,6 +1301,7 @@ function AddMemberModal({ onClose, onAdd }) {
                           type="date"
                           name="child2Dob"
                           value={form.child2Dob}
+                          max={today}
                           onChange={handleChange}
                           className={inputClass(errors.child2Dob)}
                         />
@@ -2381,16 +2372,29 @@ function MembersPage({
   });
   const [searchTerm, setSearchTerm] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedTag, setSelectedTag] = useState("All");
   
   useEffect(() => {
     localStorage.setItem("membersData", JSON.stringify(members));
   }, [members]);
 
   const filteredMembers = useMemo(() => {
-    const value = searchTerm.trim().toLowerCase();
-    if (!value) return members;
+    let result = members;
+    
+    if (selectedTag !== "All") {
+      result = result.filter((member) => {
+        const tags = member.tags || [];
+        if (selectedTag === "Past President") {
+          return tags.includes("Past President") || member.role?.toLowerCase().includes("president");
+        }
+        return tags.includes(selectedTag);
+      });
+    }
 
-    return members.filter((member) => {
+    const value = searchTerm.trim().toLowerCase();
+    if (!value) return result;
+
+    return result.filter((member) => {
       const text = [
         member.name,
         member.role,
@@ -2405,7 +2409,7 @@ function MembersPage({
 
       return text.includes(value);
     });
-  }, [members, searchTerm]);
+  }, [members, searchTerm, selectedTag]);
 
   const handleAddMember = (newMember) => {
     setMembers((prev) => [...prev, newMember]);
@@ -2447,12 +2451,12 @@ function MembersPage({
           <div className="flex h-full flex-col">
             <div>
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)] sm:h-11 sm:w-11">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_12px_26px_rgba(31,36,48,0.08)] sm:h-11 sm:w-11">
+                  <img src={logo} alt="JCI Logo" className="h-7 w-7 object-contain sm:h-8 sm:w-8" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">The Curator</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Premium Network</p>
+                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
+                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
                 </div>
               </div>
 
@@ -2477,7 +2481,7 @@ function MembersPage({
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member Classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -2528,7 +2532,7 @@ function MembersPage({
 
         {/* Main */}
         <main className="h-screen flex-1 overflow-y-auto px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-7 xl:px-10">
-          <section className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <section className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h1 className="text-[1.6rem] font-bold tracking-[-0.05em] leading-none text-[#1f2430] sm:text-[1.8rem] lg:text-[2.2rem]">
                 Members Directory
@@ -2536,10 +2540,8 @@ function MembersPage({
               <p className="mt-2 text-[13px] text-[#6f7787] sm:mt-3 sm:text-[14px] lg:text-[1rem]">
                 Manage your directory members and add new profiles easily.
               </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <div className="flex h-[44px] min-w-[200px] flex-1 items-center gap-3 rounded-full bg-white px-4 shadow-sm ring-1 ring-[#eceef4] sm:h-[52px] sm:min-w-[260px]">
+              
+              <div className="mt-5 flex h-[44px] w-full max-w-[320px] items-center gap-3 rounded-full bg-white px-4 shadow-sm ring-1 ring-[#eceef4] sm:mt-6 sm:h-[50px]">
                 <Search className="h-3.5 w-3.5 text-[#9aa2b0] sm:h-4 sm:w-4" />
                 <input
                   type="text"
@@ -2549,42 +2551,45 @@ function MembersPage({
                   className="w-full bg-transparent text-[13px] text-[#4d5364] outline-none placeholder:text-[#b5b9c6] sm:text-[14px]"
                 />
               </div>
+            </div>
 
-              <button className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white text-[#666f80] shadow-sm ring-1 ring-[#eceef4] sm:h-[52px] sm:w-[52px]">
-                <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
-
-              <button className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-white text-[#666f80] shadow-sm ring-1 ring-[#eceef4] sm:h-[52px] sm:w-[52px]">
-                <MoreHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
+            <div className="flex flex-col items-center gap-4 sm:items-end">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#636b7b] shadow-sm ring-1 ring-[#eceef4] transition hover:bg-[#fafbff] sm:h-12 sm:w-12">
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute top-2.5 right-2.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#5b3df5] sm:top-3.5 sm:right-3.5"></span>
+                </button>
+                <div className="flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#eceef4] sm:px-5 sm:py-2">
+                  <img
+                    src={saran}
+                    alt="Sarankumar R"
+                    className="h-8 w-8 rounded-full border border-[#f0f2f5] object-cover sm:h-10 sm:w-10"
+                  />
+                  <span className="text-[14px] font-bold text-[#1f2430] sm:text-[16px]">Sarankumar R</span>
+                </div>
+              </div>
 
               <button
                 onClick={() => setShowAddModal(true)}
-                className="rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5] px-4 py-2.5 text-[12px] font-semibold text-white shadow-[0_14px_22px_rgba(78,58,233,0.22)] sm:px-5 sm:py-3 sm:text-[13px]"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5] px-6 py-2.5 text-[14px] font-semibold text-white shadow-[0_14px_22px_rgba(78,58,233,0.22)] transition hover:-translate-y-0.5 sm:w-auto sm:px-8 sm:py-3.5"
               >
-                + Add Member
+                <span className="text-xl">+</span> Add Member
               </button>
             </div>
           </section>
 
           <div className="mt-4 flex flex-wrap gap-2 sm:mt-5 sm:gap-3">
-            {[
-              { label: "UI/UX", active: true },
-              { label: "Frontend" },
-              { label: "Mentor" },
-              { label: "Strategy" },
-              { label: "Branding" },
-              { label: "Workflow" },
-            ].map((tag) => (
+            {["All", "LGB", "Members", "Appointee", "JAC", "Past President", "Business", "Salaried"].map((tag) => (
               <button
-                key={tag.label}
-                className={`rounded-full px-3 py-1.5 text-[11px] font-semibold sm:px-4 sm:py-2 sm:text-[12px] ${
-                  tag.active
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`rounded-full px-3 py-1.5 text-[11px] font-semibold transition sm:px-4 sm:py-2 sm:text-[12px] ${
+                  selectedTag === tag
                     ? "bg-[#5b3df5] text-white"
                     : "bg-white text-[#767d8b] ring-1 ring-[#eceef4]"
                 }`}
               >
-                {tag.label}
+                {tag}
               </button>
             ))}
           </div>
@@ -2614,14 +2619,22 @@ function MembersPage({
           </section>
 
           <div className="mt-8 flex items-center justify-center gap-3 text-[14px] text-[#6f7787] sm:mt-10 sm:gap-4 sm:text-[16px]">
-            <button className="hidden sm:inline">chevron</button>
-            <button className="flex h-7 w-7 items-center justify-center rounded-full bg-[#4e3ae9] text-white sm:h-8 sm:w-8">
+            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#666f80] shadow-sm ring-1 ring-[#eceef4] hover:bg-gray-50">
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#4e3ae9] text-white shadow-md sm:h-9 sm:w-9">
               1
             </button>
-            <button>2</button>
-            <button>3</button>
-            <span>.</span>
-            <button className="hidden sm:inline">chevron_right</button>
+            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#666f80] shadow-sm ring-1 ring-[#eceef4] hover:bg-gray-50">
+              2
+            </button>
+            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#666f80] shadow-sm ring-1 ring-[#eceef4] hover:bg-gray-50">
+              3
+            </button>
+            <span className="text-[#9aa2b0]">...</span>
+            <button className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#666f80] shadow-sm ring-1 ring-[#eceef4] hover:bg-gray-50">
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         </main>
 
@@ -2783,7 +2796,8 @@ function RecentActivity() {
         ))}
       </div>
 
-      <div className="mt-6 rounded-[24px] border border-[#ddd9ff] bg-[linear-gradient(135deg,rgba(114,91,255,0.08),rgba(166,142,255,0.12))] p-4 sm:mt-8 sm:p-5">
+      {/* Hide Member Audit Needed section as requested */}
+      {/* <div className="mt-6 rounded-[24px] border border-[#ddd9ff] bg-[linear-gradient(135deg,rgba(114,91,255,0.08),rgba(166,142,255,0.12))] p-4 sm:mt-8 sm:p-5">
         <h4 className="text-[1rem] font-bold text-[#4c39ea] sm:text-[1.1rem] md:text-[1.15rem]">Member Audit Needed</h4>
         <p className="mt-2 text-[12px] text-[#7a70dd] sm:text-[13px] md:text-[14px]">
           14 new members are pending verification to maintain directory quality.
@@ -2791,7 +2805,7 @@ function RecentActivity() {
         <button className="mt-4 h-10 w-full rounded-xl bg-gradient-to-r from-[#4e3ae9] to-[#5f44f4] text-[12px] font-semibold text-white shadow-[0_16px_28px_rgba(78,58,233,0.25)] sm:mt-5 sm:h-12 sm:text-[13px] md:text-[14px]">
           Start Verification
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -2817,8 +2831,8 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                   <Users className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">The Curator</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Premium Network</p>
+                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
+                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
                 </div>
               </div>
 
@@ -2904,7 +2918,7 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
             </div>
 
             <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4">
-              <div className="flex h-[44px] flex-1 items-center gap-2 rounded-full bg-[#f1f3f7] px-3 ring-1 ring-[#eceff4] sm:h-[48px] sm:gap-3 sm:px-4 md:h-[52px]">
+              <div className="flex h-[44px] flex-1 max-w-[320px] items-center gap-2 rounded-full bg-[#f1f3f7] px-3 ring-1 ring-[#eceff4] sm:h-[48px] sm:gap-3 sm:px-4 md:h-[52px]">
                 <Search className="h-3.5 w-3.5 text-[#a3a9b6] sm:h-4 sm:w-4" />
                 <input
                   placeholder="Search reports..."
@@ -2912,20 +2926,25 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 />
               </div>
 
-              <button className="rounded-full p-1.5 text-[#616a79] sm:p-2">
-                <Bell className="h-4 w-4 sm:h-4.5 sm:w-4.5" />
-              </button>
-
-              <button className="flex items-center gap-1 rounded-full bg-[#0f1739] px-3 py-2 text-[11px] font-semibold text-white shadow-[0_12px_20px_rgba(15,23,57,0.18)] sm:gap-2 sm:px-4 sm:py-2.5 sm:text-[12px] md:px-5 md:py-3 md:text-[13px]">
-                <span>↓</span>
-                Export
-              </button>
-
-              <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80"
-                alt="profile"
-                className="h-9 w-9 rounded-full object-cover ring-2 ring-white shadow-sm sm:h-10 sm:w-10 md:h-11 md:w-11"
-              />
+              <div className="flex items-center gap-3 sm:gap-4">
+                <button className="flex items-center gap-1 rounded-full bg-[#0f1739] px-3 py-2 text-[11px] font-semibold text-white shadow-[0_12px_20px_rgba(15,23,57,0.18)] transition hover:scale-105 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-[12px] md:px-5 md:py-3 md:text-[13px]">
+                  <span>↓</span> Export
+                </button>
+                
+                <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#636b7b] shadow-sm ring-1 ring-[#eceef4] transition hover:bg-[#fafbff] sm:h-12 sm:w-12">
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute top-2.5 right-2.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#5b3df5] sm:top-3.5 sm:right-3.5"></span>
+                </button>
+                
+                <div className="flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#eceef4] sm:px-5 sm:py-2">
+                  <img
+                    src={saran}
+                    alt="Sarankumar R"
+                    className="h-8 w-8 rounded-full border border-[#f0f2f5] object-cover sm:h-10 sm:w-10"
+                  />
+                  <span className="text-[14px] font-bold text-[#1f2430] sm:text-[16px]">Sarankumar R</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2986,7 +3005,7 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                     Direct Revenue
                   </p>
                   <h3 className="mt-4 text-[2.2rem] font-bold tracking-[-0.05em] text-[#141a2d] sm:mt-5 sm:text-[2.5rem] md:mt-6 md:text-[3rem]">
-                    $42.8k
+                    ₹42,800
                   </h3>
                 </div>
                 <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#f1edff] text-[#5b3df5] sm:h-10 sm:w-10 md:h-11 md:w-11">
@@ -3010,25 +3029,58 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
 
               <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5 md:mt-7 md:space-y-6">
                 {[
-                  { name: "LGB", value: "4,820", width: "w-[96%]", color: "from-[#4e3ae9] to-[#6a42f5]" },
-                  { name: "Members", value: "4,120", width: "w-[82%]", color: "from-[#6a5af9] to-[#8d88ff]" },
-                  { name: "Appointee", value: "3,450", width: "w-[69%]", color: "from-[#7a73ff] to-[#9c97ff]" },
-                  { name: "JAC", value: "2,910", width: "w-[58%]", color: "from-[#828cff] to-[#a4aeff]" },
-                  { name: "Past President", value: "1,840", width: "w-[42%]", color: "from-[#8b96b8] to-[#b2bdd3]" },
+                  { name: "LGB", value: "4,820", width: "w-[96%]", color: "bg-[#5b3df5]" },
+                  { name: "Members", value: "4,120", width: "w-[82%]", color: "bg-[#7161f5]" },
+                  { name: "Appointee", value: "3,450", width: "w-[69%]", color: "bg-[#8c7dfc]" },
+                  { name: "JAC", value: "2,910", width: "w-[58%]", color: "bg-[#a69cfe]" },
+                  { name: "Past President", value: "1,840", width: "w-[42%]", color: "bg-[#94a3b8]" },
                 ].map((item) => (
                   <div key={item.name}>
-                    <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
+                    <div className="mb-2 flex items-center justify-between text-[13px] font-medium text-[#1f2430] sm:text-[14px]">
                       <span>{item.name}</span>
-                      <span className="text-[#9aa2b0]">{item.value}</span>
+                      <span className="text-[#a1a8b5] font-semibold">{item.value}</span>
                     </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
-                      <div className={`h-full ${item.width} rounded-full bg-gradient-to-r ${item.color}`} />
+                    <div className="h-2 overflow-hidden rounded-full bg-[#f1f3f7] sm:h-2.5">
+                      <div className={`h-full ${item.width} rounded-full ${item.color}`} />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
+            <div className="rounded-[28px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
+              <div className="flex items-center justify-between">
+                <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.7rem]">
+                  Segment of Members
+                </h3>
+                <button className="text-[#8f96a4] text-[16px] leading-none sm:text-[17px] md:text-[18px]">•••</button>
+              </div>
+
+              <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
+                <div>
+                  <div className="mb-2 flex items-center justify-between text-[13px] font-medium text-[#1f2430] sm:text-[14px]">
+                    <span>Business</span>
+                    <span className="text-[#a1a8b5] font-semibold">1,200</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-[#f1f3f7] sm:h-2.5">
+                    <div className="h-full w-[62%] rounded-full bg-[#5b3df5]" />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mb-2 flex items-center justify-between text-[13px] font-medium text-[#1f2430] sm:text-[14px]">
+                    <span>Salaried</span>
+                    <span className="text-[#a1a8b5] font-semibold">940</span>
+                  </div>
+                  <div className="h-2 overflow-hidden rounded-full bg-[#f1f3f7] sm:h-2.5">
+                    <div className="h-full w-[48%] rounded-full bg-[#8c7dfc]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-5 grid gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
             <div className="rounded-[30px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
@@ -3040,9 +3092,9 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                   </p>
                 </div>
 
-                <div className="flex items-center gap-1 rounded-full bg-[#f1f3f7] p-1 text-[10px] font-semibold text-[#7a8190] sm:text-[11px] md:text-[12px]">
-                  <button className="rounded-full px-2 py-1 sm:px-3 sm:py-1.5 md:px-4">7D</button>
-                  <button className="rounded-full bg-white px-2 py-1 text-[#4c39ea] shadow-sm sm:px-3 sm:py-1.5 md:px-4">
+                <div className="flex items-center rounded-full bg-[#f1f3f7] p-1 text-[10px] font-bold text-[#7a8190] sm:text-[11px] md:text-[12px]">
+                  <button className="rounded-full px-3 py-1.5 transition-all hover:text-[#1f2430] sm:px-4">7D</button>
+                  <button className="rounded-full bg-white px-3 py-1.5 text-[#5b3df5] shadow-[0_2px_8px_rgba(91,61,245,0.12)] sm:px-4">
                     30D
                   </button>
                 </div>
@@ -3081,39 +3133,6 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 <div className="h-full w-[78%] rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5]" />
               </div>
             </div>
-          </section>
-
-          <section className="mt-5 grid gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
-            <div className="rounded-[28px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
-              <div className="flex items-center justify-between">
-                <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.7rem]">
-                  Segment of Members
-                </h3>
-                <button className="text-[#8f96a4] text-[16px] leading-none sm:text-[17px] md:text-[18px]">•••</button>
-              </div>
-
-              <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
-                <div>
-                  <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
-                    <span>Business</span>
-                    <span className="text-[#9aa2b0]">1,200</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
-                    <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5]" />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
-                    <span>Salaried</span>
-                    <span className="text-[#9aa2b0]">940</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
-                    <div className="h-full w-[48%] rounded-full bg-gradient-to-r from-[#7a73ff] to-[#9c97ff]" />
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div className="rounded-[28px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -3125,48 +3144,32 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 </button>
               </div>
 
-              <div className="mt-4 grid grid-cols-[1.6fr_0.5fr] text-[10px] font-bold uppercase tracking-[0.14em] text-[#a1a8b5] sm:mt-5 sm:text-[11px] md:mt-6 md:text-[12px]">
+              <div className="mt-4 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.2em] text-[#a1a8b5] sm:mt-5 sm:text-[11px] md:mt-6 md:text-[12px]">
                 <span>Vertical</span>
-                <span>Count</span>
+                <span className="text-right">Count</span>
               </div>
 
-              <div className="mt-4 space-y-4 text-[13px] text-[#3c4350] sm:mt-5 sm:space-y-5 sm:text-[14px] md:mt-6 md:space-y-6 md:text-[15px]">
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Management</span>
-                  <span>48</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Training</span>
-                  <span>36</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Business</span>
-                  <span>29</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Community Development</span>
-                  <span>24</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Public Relationship & Marketing</span>
-                  <span>18</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Growth & Development</span>
-                  <span>16</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Internationalism</span>
-                  <span>12</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Junior Jaycee</span>
-                  <span>20</span>
-                </div>
-                <div className="grid grid-cols-[1.6fr_0.5fr] items-center">
-                  <span className="font-medium">Lady Jaycee</span>
-                  <span>15</span>
-                </div>
+              <div className="mt-4 space-y-2 text-[13px] text-[#3c4350] sm:mt-5 sm:text-[14px] md:mt-6 md:text-[15px]">
+                {[
+                  { name: "Management", count: 48 },
+                  { name: "Training", count: 36 },
+                  { name: "Business", count: 29 },
+                  { name: "Community Development", count: 24 },
+                  { name: "Public Relationship & Marketing", count: 18 },
+                  { name: "Growth & Development", count: 16 },
+                  { name: "Internationalism", count: 12 },
+                  { name: "Junior Jaycee", count: 20 },
+                  { name: "Lady Jaycee", count: 15 }
+                ].map((vertical) => (
+                  <div 
+                    key={vertical.name}
+                    onClick={() => onNavigate("events", vertical.name)}
+                    className="grid grid-cols-[1.6fr_0.5fr] items-center rounded-xl p-2 transition-all hover:bg-[#f1edff] cursor-pointer group"
+                  >
+                    <span className="font-medium group-hover:text-[#5b3df5]">{vertical.name}</span>
+                    <span className="text-[#8b92a1] group-hover:text-[#5b3df5] font-semibold">{vertical.count}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
@@ -3369,14 +3372,19 @@ function SettingsPage({ onLogout, onNavigate, activePage, showSettingsPage, setS
               <button>Support</button>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-              <Bell className="h-4 w-4 text-[#677080] sm:h-4.5 sm:w-4.5 md:h-5 md:w-5" />
-              <HelpCircle className="h-4 w-4 text-[#677080] sm:h-4.5 sm:w-4.5 md:h-5 md:w-5" />
-              <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80"
-                alt="profile"
-                className="h-8 w-8 rounded-full object-cover sm:h-9 sm:w-9 md:h-10 md:w-10"
-              />
+            <div className="flex items-center gap-3 sm:gap-4">
+              <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#636b7b] shadow-sm ring-1 ring-[#eceef4] transition hover:bg-[#fafbff] sm:h-12 sm:w-12">
+                <Bell className="h-5 w-5" />
+                <span className="absolute top-2.5 right-2.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#5b3df5] sm:top-3.5 sm:right-3.5"></span>
+              </button>
+              <div className="flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#eceef4] sm:px-5 sm:py-2">
+                <img
+                  src={saran}
+                  alt="Sarankumar R"
+                  className="h-8 w-8 rounded-full border border-[#f0f2f5] object-cover sm:h-10 sm:w-10"
+                />
+                <span className="text-[14px] font-bold text-[#1f2430] sm:text-[16px]">Sarankumar R</span>
+              </div>
             </div>
           </div>
 
@@ -3589,11 +3597,12 @@ function SettingsPage({ onLogout, onNavigate, activePage, showSettingsPage, setS
   );
 }
 
-function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setShowSettingsPage }) {
+function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setShowSettingsPage, eventCategoryFilter = "All", setEventCategoryFilter }) {
   const [eventForm, setEventForm] = useState({
     name: "",
     category: "Management",
     venue: "",
+    location: "",
     dateTime: "",
     chiefGuest: "",
     guestOfHonor: "",
@@ -3618,6 +3627,7 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
       !eventForm.name.trim() ||
       !eventForm.category.trim() ||
       !eventForm.venue.trim() ||
+      !eventForm.location.trim() ||
       !eventForm.dateTime.trim() ||
       !eventForm.chiefGuest.trim() ||
       !eventForm.guestOfHonor.trim()
@@ -3632,48 +3642,86 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
     {
       id: 1,
       status: "LIVE",
-      tag: "TECH",
+      tag: "MANAGEMENT",
       statusClass: "bg-[#ff5c5c] text-white",
       tagClass: "bg-[#111827] text-white",
-      image:
-        "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=80",
-      title: "Digital Frontier Workshop",
-      meta: "Virtual · Meta HQ",
-      avatars: [
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80",
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80",
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80",
-      ],
-      extra: "+82",
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=80",
+      title: "Strategic Board Meet 2024",
+      meta: "Conference Hall A · 10:00 AM",
       action: "arrow",
     },
     {
       id: 2,
       status: "IN 2 DAYS",
-      tag: "BUSINESS",
+      tag: "TRAINING",
       statusClass: "bg-[#5b3df5] text-white",
       tagClass: "bg-[#111827] text-white",
-      image:
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80",
-      title: "Executive Networking Circle",
-      meta: "Oct 24, 2024 · 06:00 PM",
-      guest: "Guest: Satya Nadella",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80",
+      title: "Leadership Excellence Workshop",
+      meta: "Oct 26, 2024 · 02:00 PM",
+      guest: "Trainer: Dr. Elena Vance",
       action: "edit",
     },
     {
       id: 3,
-      status: "PENDING",
-      tag: "CULTURE",
-      statusClass: "bg-[#f3f4f6] text-[#111827]",
+      status: "UPCOMING",
+      tag: "BUSINESS",
+      statusClass: "bg-[#10b981] text-white",
       tagClass: "bg-[#111827] text-white",
-      image:
-        "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80",
-      title: "Founders Dinner: Series A Focus",
-      meta: "Soho House, London",
-      capacity: "Capacity: 45 / 50",
-      action: "more",
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+      title: "MSME Networking Summit",
+      meta: "Trade Center · Nov 05",
+      action: "arrow",
+    },
+    {
+      id: 4,
+      status: "PLANNED",
+      tag: "COMMUNITY Development",
+      statusClass: "bg-[#f59e0b] text-white",
+      tagClass: "bg-[#111827] text-white",
+      image: "https://images.unsplash.com/photo-1559027615-cd942b03fb51?auto=format&fit=crop&w=900&q=80",
+      title: "City Wellness Initiative",
+      meta: "Central Park · Nov 12",
+      action: "arrow",
+    },
+    {
+      id: 5,
+      status: "UPCOMING",
+      tag: "Growth & Development",
+      statusClass: "bg-[#eb4899] text-white",
+      tagClass: "bg-[#111827] text-white",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+      title: "Career 180 Seminar",
+      meta: "Town Hall · Nov 18",
+      action: "arrow",
+    },
+    {
+      id: 6,
+      status: "INTERNATIONAL",
+      tag: "Internationalism",
+      statusClass: "bg-[#3b82f6] text-white",
+      tagClass: "bg-[#111827] text-white",
+      image: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=900&q=80",
+      title: "Global Youth Exchange",
+      meta: "Virtual · Dec 02",
+      action: "arrow",
+    },
+    {
+      id: 7,
+      status: "LIVE",
+      tag: "Junior Jaycee",
+      statusClass: "bg-[#8b5cf6] text-white",
+      tagClass: "bg-[#111827] text-white",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80",
+      title: "NextGen Leaders Camp",
+      meta: "Academy Grounds · Dec 10",
+      action: "arrow",
     },
   ];
+
+  const filteredCards = eventCategoryFilter === "All" || !eventCategoryFilter
+    ? eventCards 
+    : eventCards.filter(card => card.tag.toUpperCase() === eventCategoryFilter.toUpperCase());
 
   return (
     <div className="h-screen overflow-hidden bg-[#f4f5f7] text-[#1f2430]">
@@ -3689,12 +3737,12 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
           <div className="flex h-full flex-col">
             <div>
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)] sm:h-11 sm:w-11">
-                  <Grid2X2 className="h-4 w-4 sm:h-5 sm:w-5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white shadow-[0_12px_26px_rgba(91,61,245,0.15)] sm:h-11 sm:w-11">
+                  <img src={logo} alt="JCI Logo" className="h-8 w-8 object-contain" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">Lumina Admin</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Premium Curator</p>
+                  <p className="text-[14px] font-bold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
+                  <p className="text-[11px] font-medium text-[#5b3df5] sm:text-[12px]">Admin Portal</p>
                 </div>
               </div>
 
@@ -3786,20 +3834,20 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
                   />
                 </div>
 
-                <button className="relative rounded-full p-2 text-[#677080] sm:p-2.5">
-                  <Bell className="h-4 w-4 sm:h-4.5 sm:w-4.5 md:h-5 md:w-5" />
-                  <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-[#5b3df5] sm:right-1.5 sm:top-1.5 sm:h-2.5 sm:w-2.5" />
+              <div className="flex items-center gap-3 sm:gap-4">
+                <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#636b7b] shadow-sm ring-1 ring-[#eceef4] transition hover:bg-[#fafbff] sm:h-12 sm:w-12">
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute top-2.5 right-2.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#5b3df5] sm:top-3.5 sm:right-3.5"></span>
                 </button>
-
-                <button className="rounded-full p-1.5 text-[#677080] sm:p-2">
-                  <HelpCircle className="h-4 w-4 sm:h-4.5 sm:w-4.5 md:h-5 md:w-5" />
-                </button>
-
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
-                  alt="admin"
-                  className="h-9 w-9 rounded-full object-cover ring-2 ring-white shadow-sm sm:h-10 sm:w-10 md:h-11 md:w-11"
-                />
+                <div className="flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#eceef4] sm:px-5 sm:py-2">
+                  <img
+                    src={saran}
+                    alt="Sarankumar R"
+                    className="h-8 w-8 rounded-full border border-[#f0f2f5] object-cover sm:h-10 sm:w-10"
+                  />
+                  <span className="text-[14px] font-bold text-[#1f2430] sm:text-[16px]">Sarankumar R</span>
+                </div>
+              </div>
               </div>
             </div>
 
@@ -3813,9 +3861,6 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
                       </span>
                       Plan New Event
                     </div>
-                    <span className="inline-block rounded-full bg-[#f1edff] px-2 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#6b57f5] sm:px-3 sm:py-1 sm:text-[11px]">
-                      Step 1 of 2
-                    </span>
                   </div>
 
                   <div className="mt-4 grid gap-3 sm:mt-5 sm:gap-4 md:grid-cols-2">
@@ -3862,6 +3907,19 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
                         value={eventForm.venue}
                         onChange={(e) => handleEventChange("venue", e.target.value)}
                         placeholder="Grand Hyatt or Zoom Link"
+                        className="h-[46px] w-full rounded-2xl bg-[#f5f6f8] px-3 text-[13px] text-[#495160] outline-none sm:h-[50px] sm:px-4 sm:text-[14px] md:h-[52px]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.12em] text-[#9ca3af] sm:mb-2 sm:text-[11px]">
+                        Location
+                      </label>
+                      <input
+                        type="text"
+                        value={eventForm.location}
+                        onChange={(e) => handleEventChange("location", e.target.value)}
+                        placeholder="e.g. Madurai, Tamil Nadu"
                         className="h-[46px] w-full rounded-2xl bg-[#f5f6f8] px-3 text-[13px] text-[#495160] outline-none sm:h-[50px] sm:px-4 sm:text-[14px] md:h-[52px]"
                       />
                     </div>
@@ -4027,9 +4085,19 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
             <section className="mt-6 sm:mt-7 md:mt-8">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <h2 className="text-[1.5rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.8rem] md:text-[2rem]">
-                    Active Schedule
-                  </h2>
+                  <div className="flex items-center gap-3">
+                    <h2 className="text-[1.5rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.8rem] md:text-[2rem]">
+                      Active Schedule
+                    </h2>
+                    {eventCategoryFilter !== "All" && (
+                      <button 
+                        onClick={() => setEventCategoryFilter("All")}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[#f1edff] px-3 py-1 text-[11px] font-bold text-[#5b3df5] transition hover:bg-[#e6e0ff]"
+                      >
+                        {eventCategoryFilter} <span className="text-[14px]">×</span>
+                      </button>
+                    )}
+                  </div>
                   <p className="mt-1 text-[12px] text-[#8b92a1] sm:text-[13px] md:text-[14px]">
                     Manage ongoing and upcoming events in your directory.
                   </p>
@@ -4046,7 +4114,7 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
               </div>
 
               <div className="mt-4 grid gap-4 sm:mt-5 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {eventCards.map((card) => (
+                {filteredCards.map((card) => (
                   <div
                     key={card.id}
                     className="overflow-hidden rounded-[26px] bg-white shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3]"
@@ -4271,10 +4339,10 @@ function Memberclassification({
                 </div>
                 <div>
                   <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">
-                    The Curator
+                    JCI Madurai Central
                   </p>
                   <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">
-                    Premium Network
+                    Admin Portal
                   </p>
                 </div>
               </div>
@@ -4302,7 +4370,7 @@ function Memberclassification({
 
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member Classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -4365,19 +4433,18 @@ function Memberclassification({
                   />
                 </div>
 
-                <div className="flex items-center gap-2 self-end sm:gap-3">
-                  <button className="rounded-full p-2 text-[#6d7483] sm:p-2.5">
-                    <Bell className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#636b7b] shadow-sm ring-1 ring-[#eceef4] transition hover:bg-[#fafbff] sm:h-12 sm:w-12">
+                    <Bell className="h-5 w-5" />
+                    <span className="absolute top-2.5 right-2.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#5b3df5] sm:top-3.5 sm:right-3.5"></span>
                   </button>
-                  <button className="rounded-full p-2 text-[#6d7483] sm:p-2.5">
-                    <Settings className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                  </button>
-                  <div className="flex items-center gap-2 rounded-full bg-white px-2 py-1 shadow-sm ring-1 ring-[#edf0f6]">
+                  <div className="flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#eceef4] sm:px-5 sm:py-2">
                     <img
-                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80"
-                      alt="admin"
-                      className="h-7 w-7 rounded-full object-cover sm:h-8 sm:w-8"
+                      src={saran}
+                      alt="Sarankumar R"
+                      className="h-8 w-8 rounded-full border border-[#f0f2f5] object-cover sm:h-10 sm:w-10"
                     />
+                    <span className="text-[14px] font-bold text-[#1f2430] sm:text-[16px]">Sarankumar R</span>
                   </div>
                 </div>
               </div>
@@ -4514,65 +4581,6 @@ function Memberclassification({
                 </div>
               </section>
 
-              <section className="mt-5 grid grid-cols-1 gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
-                <div className="rounded-[24px] bg-white p-4 shadow-sm ring-1 ring-[#edf0f5] sm:p-5">
-                  <div className="flex items-center gap-2">
-                    <div className="text-[#7d8595]">◔</div>
-                    <h3 className="text-[14px] font-semibold text-[#2a3141] sm:text-[15px] md:text-[16px]">
-                      Recent Updates
-                    </h3>
-                  </div>
-
-                  <div className="mt-4 space-y-3 sm:mt-5">
-                    {updates.map((item, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col gap-2 rounded-2xl bg-[#fbfcfe] px-3 py-3 ring-1 ring-[#f0f3f8] sm:flex-row sm:items-center sm:justify-between sm:px-4 sm:py-3"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#f2efff] text-[#6D5EF7] sm:h-9 sm:w-9">
-                            <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                          </div>
-                          <div>
-                            <p className="text-[12px] font-semibold text-[#2a3141] sm:text-[13px]">
-                              {item.title}
-                            </p>
-                            <p className="mt-0.5 text-[10px] text-[#97a0b1] sm:mt-1 sm:text-[11px]">
-                              {item.subtitle}
-                            </p>
-                          </div>
-                        </div>
-                        <span className="text-[10px] text-[#97a0b1] sm:text-[11px]">
-                          {item.time}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="rounded-[24px] bg-[#f7f4ff] p-4 shadow-sm ring-1 ring-[#ece8fb] sm:p-5">
-                  <h3 className="text-[1rem] font-bold text-[#6b5bf6] sm:text-[1.1rem]">
-                    Need Help?
-                  </h3>
-                  <p className="mt-2 text-[12px] leading-6 text-[#7d8595] sm:mt-3 sm:text-[13px]">
-                    Looking to bulk import categories or set up automated rules
-                    for directory placement? Our team of curators is here to
-                    help.
-                  </p>
-
-                  <div className="mt-4 overflow-hidden rounded-[18px] bg-[#0f172a] sm:mt-5">
-                    <img
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                      alt="support"
-                      className="h-[100px] w-full object-cover opacity-90 sm:h-[110px] md:h-[120px]"
-                    />
-                  </div>
-
-                  <button className="mt-4 w-full rounded-2xl bg-white py-2.5 text-[12px] font-semibold text-[#6b5bf6] shadow-sm sm:mt-5 sm:py-3 sm:text-[13px]">
-                    Contact Support
-                  </button>
-                </div>
-              </section>
             </div>
           </main>
         </div>
@@ -4604,8 +4612,8 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                   <Users className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
                 <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">The Curator</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Premium Network</p>
+                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
+                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
                 </div>
               </div>
 
@@ -4630,7 +4638,7 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label="Member Classification"
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -4686,22 +4694,24 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
               <input className="w-full bg-transparent text-[13px] text-[#48505f] outline-none placeholder:text-[#afb5c2] sm:text-[14px] md:text-[15px]" placeholder="Search members or data..." />
             </div>
 
-            <div className="flex items-center justify-end gap-2 sm:gap-3 md:gap-4">
-              <button className="relative rounded-full p-2 text-[#677080] sm:p-2.5">
-                <Bell className="h-4 w-4 sm:h-4.5 sm:w-4.5 md:h-5 md:w-5" />
-                <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-[#5b3df5] sm:right-1.5 sm:top-1.5 sm:h-2.5 sm:w-2.5" />
+            <div className="flex items-center justify-end gap-3 sm:gap-4">
+              <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#636b7b] shadow-sm ring-1 ring-[#eceef4] transition hover:bg-[#fafbff] sm:h-12 sm:w-12">
+                <Bell className="h-5 w-5" />
+                <span className="absolute top-2.5 right-2.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-[#5b3df5] sm:top-3.5 sm:right-3.5"></span>
               </button>
-              <div className="flex items-center gap-2 rounded-full bg-white px-2 py-1 shadow-sm ring-1 ring-[#eef0f5] sm:gap-3 sm:px-2.5 sm:py-1.5 md:px-3 md:py-2">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80" alt="profile" className="h-8 w-8 rounded-full object-cover sm:h-9 sm:w-9 md:h-10 md:w-10" />
-                <div className="hidden pr-2 sm:block">
-                  <p className="text-sm font-semibold">Curator Admin</p>
-                </div>
+              <div className="flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-[#eceef4] sm:px-5 sm:py-2">
+                <img
+                  src={saran}
+                  alt="Sarankumar R"
+                  className="h-8 w-8 rounded-full border border-[#f0f2f5] object-cover sm:h-10 sm:w-10"
+                />
+                <span className="text-[14px] font-bold text-[#1f2430] sm:text-[16px]">Sarankumar R</span>
               </div>
             </div>
           </div>
 
           <section className="mt-5 sm:mt-6 md:mt-7 lg:mt-8">
-            <h1 className="text-[2rem] font-bold tracking-[-0.05em] leading-none sm:text-[2.5rem] md:text-[2.8rem] lg:text-[3.2rem]">Welcome, Curator</h1>
+            <h1 className="text-[2rem] font-bold tracking-[-0.05em] leading-none sm:text-[2.5rem] md:text-[2.8rem] lg:text-[3.2rem]">Welcome, Sarankumar R</h1>
             <p className="mt-2 text-[1.1rem] text-[#6f7787] sm:mt-2.5 sm:text-[1.2rem] md:mt-3 md:text-[1.25rem] lg:text-[1.35rem]">
               Your directory ecosystem is growing at a record pace this week.
             </p>
@@ -4716,7 +4726,69 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
           </section>
 
           <section className="mt-5 space-y-6 sm:mt-6 sm:space-y-7 md:mt-7 md:space-y-8">
-            <CategoryDistribution />
+            <section className="mt-5 grid gap-4 sm:mt-6 sm:gap-5 lg:grid-cols-2">
+              {/* Categories of Members Section */}
+              <div className="rounded-[30px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.7rem] lg:text-[1.9rem]">
+                    Categories of Members
+                  </h3>
+                  <button className="text-[#8f96a4] text-[16px] leading-none sm:text-[17px] md:text-[18px]">•••</button>
+                </div>
+
+                <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5 md:mt-7 md:space-y-6">
+                  {[
+                    { name: "LGB", value: "4,820", width: "w-[96%]", color: "from-[#4e3ae9] to-[#6a42f5]" },
+                    { name: "Members", value: "4,120", width: "w-[82%]", color: "from-[#6a5af9] to-[#8d88ff]" },
+                    { name: "Appointee", value: "3,450", width: "w-[69%]", color: "from-[#7a73ff] to-[#9c97ff]" },
+                    { name: "JAC", value: "2,910", width: "w-[58%]", color: "from-[#828cff] to-[#a4aeff]" },
+                    { name: "Past President", value: "1,840", width: "w-[42%]", color: "from-[#8b96b8] to-[#b2bdd3]" },
+                  ].map((item) => (
+                    <div key={item.name}>
+                      <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
+                        <span>{item.name}</span>
+                        <span className="text-[#9aa2b0]">{item.value}</span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
+                        <div className={`h-full ${item.width} rounded-full bg-gradient-to-r ${item.color}`} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Segment of Members Section */}
+              <div className="rounded-[30px] bg-white p-4 shadow-[0_8px_24px_rgba(25,30,60,0.04)] ring-1 ring-[#efeff3] sm:p-5 md:p-6 lg:p-7">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[1.3rem] font-bold tracking-[-0.04em] text-[#1f2430] sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.7rem]">
+                    Segment of Members
+                  </h3>
+                  <button className="text-[#8f96a4] text-[16px] leading-none sm:text-[17px] md:text-[18px]">•••</button>
+                </div>
+
+                <div className="mt-5 space-y-4 sm:mt-6 sm:space-y-5">
+                  <div>
+                    <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
+                      <span>Business</span>
+                      <span className="text-[#9aa2b0]">1,200</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
+                      <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-[#4e3ae9] to-[#6a42f5]" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="mb-2 flex items-center justify-between text-[12px] font-medium text-[#3b4250] sm:text-[13px] md:text-[14px]">
+                      <span>Salaried</span>
+                      <span className="text-[#9aa2b0]">940</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-[#e8ebf2] sm:h-2.5">
+                      <div className="h-full w-[48%] rounded-full bg-gradient-to-r from-[#7a73ff] to-[#9c97ff]" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
             <RecentActivity />
           </section>
         </main>
@@ -4729,6 +4801,12 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activePage, setActivePage] = useState("dashboard");
   const [showSettingsPage, setShowSettingsPage] = useState(false);
+  const [eventCategoryFilter, setEventCategoryFilter] = useState("All");
+
+  const handleNavigate = (page, filter = "All") => {
+    setActivePage(page);
+    setEventCategoryFilter(filter);
+  };
 
   useEffect(() => {
     if (!showSettingsPage && activePage === "settings") {
@@ -4749,7 +4827,7 @@ export default function App() {
     return (
       <MembersPage
         onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
+        onNavigate={handleNavigate}
         activePage={activePage}
         showSettingsPage={showSettingsPage}
         setShowSettingsPage={setShowSettingsPage}
@@ -4761,10 +4839,12 @@ export default function App() {
     return (
       <EventsPage
         onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
+        onNavigate={handleNavigate}
         activePage={activePage}
         showSettingsPage={showSettingsPage}
         setShowSettingsPage={setShowSettingsPage}
+        eventCategoryFilter={eventCategoryFilter}
+        setEventCategoryFilter={setEventCategoryFilter}
       />
     );
   }
@@ -4773,7 +4853,7 @@ export default function App() {
     return (
       <AnalyticsPage
         onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
+        onNavigate={handleNavigate}
         activePage={activePage}
         showSettingsPage={showSettingsPage}
         setShowSettingsPage={setShowSettingsPage}
@@ -4785,7 +4865,7 @@ export default function App() {
     return (
       <Memberclassification
         onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
+        onNavigate={handleNavigate}
         activePage={activePage}
         showSettingsPage={showSettingsPage}
         setShowSettingsPage={setShowSettingsPage}
@@ -4797,7 +4877,7 @@ export default function App() {
     return (
       <SettingsPage
         onLogout={() => setIsLoggedIn(false)}
-        onNavigate={setActivePage}
+        onNavigate={handleNavigate}
         activePage={activePage}
         showSettingsPage={showSettingsPage}
         setShowSettingsPage={setShowSettingsPage}
@@ -4808,7 +4888,7 @@ export default function App() {
   return (
     <DashboardPage
       onLogout={() => setIsLoggedIn(false)}
-      onNavigate={setActivePage}
+      onNavigate={handleNavigate}
       activePage={activePage}
       showSettingsPage={showSettingsPage}
       setShowSettingsPage={setShowSettingsPage}

@@ -96,6 +96,30 @@ const CONVERSATION_RULES = [
     response: "Hello! Welcome to **JCI Madurai Central**. I'm your official concierge. Ask me anything about our membership, events, training programs, or how to get involved!",
   },
   {
+    regex: /\b(how to join|join jci|become a member|membership details)\b/i,
+    response: "Joining is easy! Simply visit our **/membership** page to fill out the application form. Once submitted, our team will guide you through the induction process and fee payment. We welcome all young citizens aged 18-40!",
+  },
+  {
+    regex: /\b(fee|cost|how much|payment|subscription)\b/i,
+    response: "Membership fees are determined annually by the local chapter. To get the most accurate and up-to-date fee structure for **JCI Madurai Central**, please reach out to our treasurer via the **/contact** page or call us directly.",
+  },
+  {
+    regex: /\b(president|who is the lead|chief|head)\b/i,
+    response: "The 2026 National President of JCI India is **JFG Bharath N Acharya**, leading with the theme **'The Year of Legacy Reimagined'**. Our local chapter is also lead by a dedicated board of directors you can meet at our events!",
+  },
+  {
+    regex: /\b(portal|dashboard|access|login|member area)\b/i,
+    response: "You can access the Member Portal at **/login**. Once logged in with your credentials, you'll have access to your **Participation Score**, event registrations, digital ID card, and exclusive resources.",
+  },
+  {
+    regex: /\b(event|upcoming|activities|projects|what is happening)\b/i,
+    response: "We have a vibrant calendar! You can view ongoing public initiatives on our **Home** page, or if you're a member, log in to the **/portal/events** section for a full list of upcoming trainings and workshops.",
+  },
+  {
+    regex: /\b(contact|phone|email|address|location|office)\b/i,
+    response: "Our office is located at **12/4, Heritage Avenue, Madurai**. You can call us at **+91 452 234 5678** or email **info@jcimaduraicentral.org**. Visit **/contact** for a map and contact form!",
+  },
+  {
     regex: /\b(thank you|thanks|thx|appreciate|great help|helpful)\b/i,
     response: "You're most welcome! Is there anything else about **JCI Madurai Central** I can help you with?",
   },
