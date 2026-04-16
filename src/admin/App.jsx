@@ -392,6 +392,28 @@ function SidebarItem({ icon: Icon, label, active, onClick }) {
   );
 }
 
+const MEMBER_CLASSIFICATION_LABEL = "Member Classification";
+
+function SidebarBrand() {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_12px_26px_rgba(31,36,48,0.08)] sm:h-11 sm:w-11">
+        <img
+          src={logo}
+          alt="JCI Madurai Central Logo"
+          className="h-7 w-7 object-contain sm:h-8 sm:w-8"
+        />
+      </div>
+      <div>
+        <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">
+          JCI Madurai Central
+        </p>
+        <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
+      </div>
+    </div>
+  );
+}
+
 function SettingsToggleBlock({
   activePage,
   onNavigate,
@@ -971,7 +993,10 @@ function AddMemberModal({ onClose, onAdd }) {
         </div>
 
         <div className="mt-4 grid grid-cols-4 gap-2 sm:mt-6 sm:gap-3">
-          {[1, 2, 3, 4].map((item) => (
+          {["Personal Profile", "Family", "Business Profile", "Social Profile"].map((label, index) => {
+            const item = index + 1;
+
+            return (
             <div
               key={item}
               className={`rounded-2xl px-2 py-2 text-center text-[11px] font-semibold sm:px-4 sm:py-3 sm:text-[13px] ${
@@ -980,9 +1005,10 @@ function AddMemberModal({ onClose, onAdd }) {
                   : "bg-[#f5f6fa] text-[#7b8494]"
               }`}
             >
-              Section {item}
+              {label}
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {step === 1 && (
@@ -1002,14 +1028,14 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div>
-                <label className={labelClass}>2. Contribution</label>
+                <label className={labelClass}>2. JCI - Contribution</label>
                 <select
                   name="role"
                   value={form.role}
                   onChange={handleChange}
                   className={inputClass(errors.role)}
                 >
-                  <option value="">Select role</option>
+                  <option value="">Select Role</option>
                   {ROLE_OPTIONS.map((item) => (
                     <option key={item} value={item}>{item}</option>
                   ))}
@@ -1046,7 +1072,7 @@ function AddMemberModal({ onClose, onAdd }) {
                   onChange={handleChange}
                   className={inputClass(errors.gender)}
                 >
-                  <option value="">Select gender</option>
+                  <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Other">Other</option>
@@ -1084,7 +1110,7 @@ function AddMemberModal({ onClose, onAdd }) {
                   onChange={handleChange}
                   className={inputClass(errors.bloodGroup)}
                 >
-                  <option value="">Select blood group</option>
+                  <option value="">Select Blood Group</option>
                   {BLOOD_GROUP_OPTIONS.map((item) => (
                     <option key={item} value={item}>{item}</option>
                   ))}
@@ -1099,7 +1125,7 @@ function AddMemberModal({ onClose, onAdd }) {
                   onChange={handleChange}
                   className={inputClass(errors.businessProfile)}
                 >
-                  <option value="">Select profile</option>
+                  <option value="">Select Profile</option>
                   {BUSINESS_PROFILE_OPTIONS.map((item) => (
                     <option key={item} value={item}>{item}</option>
                   ))}
@@ -1116,7 +1142,7 @@ function AddMemberModal({ onClose, onAdd }) {
                   onChange={handleChange}
                   className={inputClass(errors.tagValue)}
                 >
-                  <option value="">Select category</option>
+                  <option value="">Select Category</option>
                   {CATEGORY_OPTIONS.map((item) => (
                     <option key={item} value={item}>
                       {item}
@@ -1126,14 +1152,14 @@ function AddMemberModal({ onClose, onAdd }) {
               </div>
 
               <div className="md:col-span-2">
-                <label className={labelClass}>11. Trainer Details</label>
+                <label className={labelClass}>11. Trainership Details (If applicable)</label>
                 <select
                   name="trainerDetails"
                   value={form.trainerDetails}
                   onChange={handleChange}
                   className={inputClass()}
                 >
-                  <option value="">Select trainer detail</option>
+                  <option value="">Select Trainership Detail</option>
                   {TRAINER_OPTIONS.map((item) => (
                     <option key={item} value={item}>{item}</option>
                   ))}
@@ -1145,7 +1171,7 @@ function AddMemberModal({ onClose, onAdd }) {
 
         {step === 2 && (
           <div className="mt-6 sm:mt-8">
-            <h3 className="text-[1.1rem] font-bold text-[#1f2430] sm:text-[1.25rem]">Family Profile</h3>
+            <h3 className="text-[1.1rem] font-bold text-[#1f2430] sm:text-[1.25rem]">Family</h3>
 
             <div className="mt-4 grid gap-4 sm:mt-6 sm:gap-5 md:grid-cols-2">
               <div className="md:col-span-2">
@@ -1194,7 +1220,7 @@ function AddMemberModal({ onClose, onAdd }) {
                       onChange={handleChange}
                       className={inputClass(errors.spouseBloodGroup)}
                     >
-                      <option value="">Select blood group</option>
+                      <option value="">Select Blood Group</option>
                       {BLOOD_GROUP_OPTIONS.map((item) => (
                         <option key={item} value={item}>{item}</option>
                       ))}
@@ -1259,7 +1285,7 @@ function AddMemberModal({ onClose, onAdd }) {
                           onChange={handleChange}
                           className={inputClass(errors.child1BloodGroup)}
                         >
-                          <option value="">Select blood group</option>
+                          <option value="">Select Blood Group</option>
                           {BLOOD_GROUP_OPTIONS.map((item) => (
                             <option key={item} value={item}>{item}</option>
                           ))}
@@ -1274,7 +1300,7 @@ function AddMemberModal({ onClose, onAdd }) {
                           onChange={handleChange}
                           className={inputClass(errors.child1Gender)}
                         >
-                          <option value="">Select gender</option>
+                          <option value="">Select Gender</option>
                           {CHILD_GENDER_OPTIONS.map((item) => (
                             <option key={item} value={item}>{item}</option>
                           ))}
@@ -1315,7 +1341,7 @@ function AddMemberModal({ onClose, onAdd }) {
                           onChange={handleChange}
                           className={inputClass(errors.child2BloodGroup)}
                         >
-                          <option value="">Select blood group</option>
+                          <option value="">Select Blood Group</option>
                           {BLOOD_GROUP_OPTIONS.map((item) => (
                             <option key={item} value={item}>{item}</option>
                           ))}
@@ -1330,7 +1356,7 @@ function AddMemberModal({ onClose, onAdd }) {
                           onChange={handleChange}
                           className={inputClass(errors.child2Gender)}
                         >
-                          <option value="">Select gender</option>
+                          <option value="">Select Gender</option>
                           {CHILD_GENDER_OPTIONS.map((item) => (
                             <option key={item} value={item}>{item}</option>
                           ))}
@@ -2450,15 +2476,7 @@ function MembersPage({
         <aside className={`fixed inset-y-0 left-0 z-40 w-[260px] transform border-r border-[#edf0f5] bg-[#f7f9fc] px-4 py-5 transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} sm:px-5 sm:py-6`}>
           <div className="flex h-full flex-col">
             <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_12px_26px_rgba(31,36,48,0.08)] sm:h-11 sm:w-11">
-                  <img src={logo} alt="JCI Logo" className="h-7 w-7 object-contain sm:h-8 sm:w-8" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
-                </div>
-              </div>
+              <SidebarBrand />
 
               <nav className="mt-8 space-y-1 sm:mt-10 sm:space-y-2">
                 <SidebarItem
@@ -2481,7 +2499,7 @@ function MembersPage({
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Member Classification"
+                  label={MEMBER_CLASSIFICATION_LABEL}
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -2826,15 +2844,7 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
         <aside className={`fixed inset-y-0 left-0 z-40 w-[260px] transform border-r border-[#edf0f5] bg-[#f7f9fc] px-4 py-5 transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} sm:px-5 sm:py-6`}>
           <div className="flex h-full flex-col">
             <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)] sm:h-11 sm:w-11">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
-                </div>
-              </div>
+              <SidebarBrand />
 
               <nav className="mt-8 space-y-1 sm:mt-10 sm:space-y-2">
                 <SidebarItem
@@ -2857,7 +2867,7 @@ function AnalyticsPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label={MEMBER_CLASSIFICATION_LABEL}
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -3243,15 +3253,7 @@ function SettingsPage({ onLogout, onNavigate, activePage, showSettingsPage, setS
         <aside className={`fixed inset-y-0 left-0 z-40 w-[260px] transform border-r border-[#edf0f5] bg-[#f7f9fc] px-4 py-5 transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} sm:px-5 sm:py-6`}>
           <div className="flex h-full flex-col">
             <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)] sm:h-11 sm:w-11">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">The Curator</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Premium Network</p>
-                </div>
-              </div>
+              <SidebarBrand />
 
               <nav className="mt-8 space-y-1 sm:mt-10 sm:space-y-2">
                 <SidebarItem
@@ -3274,7 +3276,7 @@ function SettingsPage({ onLogout, onNavigate, activePage, showSettingsPage, setS
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label={MEMBER_CLASSIFICATION_LABEL}
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -3736,15 +3738,7 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
         <aside className={`fixed inset-y-0 left-0 z-40 w-[260px] transform border-r border-[#edf0f5] bg-[#f7f9fc] px-4 py-5 transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} sm:px-5 sm:py-6`}>
           <div className="flex h-full flex-col">
             <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white shadow-[0_12px_26px_rgba(91,61,245,0.15)] sm:h-11 sm:w-11">
-                  <img src={logo} alt="JCI Logo" className="h-8 w-8 object-contain" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-bold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
-                  <p className="text-[11px] font-medium text-[#5b3df5] sm:text-[12px]">Admin Portal</p>
-                </div>
-              </div>
+              <SidebarBrand />
 
               <nav className="mt-8 space-y-1 sm:mt-10 sm:space-y-2">
                 <SidebarItem
@@ -3767,7 +3761,7 @@ function EventsPage({ onLogout, onNavigate, activePage, showSettingsPage, setSho
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Memberclassification"
+                  label={MEMBER_CLASSIFICATION_LABEL}
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -4333,19 +4327,7 @@ function Memberclassification({
 }`}
           >
             <div className="flex h-full flex-col">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)] sm:h-11 sm:w-11">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">
-                    JCI Madurai Central
-                  </p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">
-                    Admin Portal
-                  </p>
-                </div>
-              </div>
+              <SidebarBrand />
 
               <nav className="mt-8 space-y-1 sm:mt-10 sm:space-y-2">
                 <SidebarItem
@@ -4370,7 +4352,7 @@ function Memberclassification({
 
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Member Classification"
+                  label={MEMBER_CLASSIFICATION_LABEL}
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
@@ -4607,15 +4589,7 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
         <aside className={`fixed inset-y-0 left-0 z-40 w-[260px] transform border-r border-[#edf0f5] bg-[#f7f9fc] px-4 py-5 transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} sm:px-5 sm:py-6`}>
           <div className="flex h-full flex-col">
             <div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#5b3df5] text-white shadow-[0_12px_26px_rgba(91,61,245,0.35)] sm:h-11 sm:w-11">
-                  <Users className="h-4 w-4 sm:h-5 sm:w-5" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-[#1f2430] sm:text-[15px]">JCI Madurai Central</p>
-                  <p className="text-[11px] text-[#8c90a0] sm:text-[12px]">Admin Portal</p>
-                </div>
-              </div>
+              <SidebarBrand />
 
               <nav className="mt-8 space-y-1 sm:mt-10 sm:space-y-2">
                 <SidebarItem
@@ -4638,7 +4612,7 @@ function DashboardPage({ onLogout, onNavigate, activePage, showSettingsPage, set
                 />
                 <SidebarItem
                   icon={FolderKanban}
-                  label="Member Classification"
+                  label={MEMBER_CLASSIFICATION_LABEL}
                   active={activePage === "Memberclassification"}
                   onClick={() => {
                     onNavigate("Memberclassification");
