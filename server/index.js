@@ -1067,14 +1067,20 @@ async function startServer() {
     console.log('Default dashboard banner image seeded.');
   }
 
-  // Serve built React frontend in production
-  if (process.env.NODE_ENV === 'production') {
-    const distPath = path.resolve(__dirname, '../dist');
+  // Serve built React frontend (always, regardless of NODE_ENV)
+  const fs = require('fs');
+  const distPath = path.resolve(__dirname, '../dist');
+  console.log(`[Static] NODE_ENV=${process.env.NODE_ENV}`);
+  console.log(`[Static] Checking dist at: ${distPath}`);
+  if (fs.existsSync(path.join(distPath, 'index.html'))) {
+    console.log('[Static] dist/index.html found — serving React app.');
     app.use(express.static(distPath));
     // Catch-all: send index.html for any non-API route (SPA routing)
     app.use((req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
+  } else {
+    console.warn('[Static] dist/index.html NOT found — React app will not be served. Run npm run build first.');
   }
 
   app.listen(PORT, () => {
