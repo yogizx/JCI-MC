@@ -7,7 +7,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "node server/index.js",
-    "seed": "node server/seed.js"
+    "seed": "node server/seed.js",
+    "start": "node server/index.js",
+    "build:render": "npm run build && node server/index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

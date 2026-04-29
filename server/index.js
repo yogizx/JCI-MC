@@ -1072,6 +1072,16 @@ async function startServer() {
   });
 }
 
+// Serve built React frontend in production
+if (process.env.NODE_ENV === 'production') {
+  const distPath = path.resolve(__dirname, '../dist');
+  app.use(express.static(distPath));
+  // Catch-all: send index.html for any non-API route (SPA routing)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
+
 startServer().catch((error) => {
   console.error('Server startup failed:', error);
   process.exit(1);
